@@ -1,0 +1,55 @@
+{extend name="index"/}
+{block name="title"}
+专业实验场所
+{/block}
+{block name="content"}
+
+<div class="col-md-1 dropdown" style="margin: 60px 0px 0px -14px;">
+  <ul class="nav">
+    <li>
+      <div class="btn-group dropright">
+        <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">实验教学理念</button>
+      </div>
+    </li>
+    <li>
+      <div class="btn-group dropright">
+        <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">专业实验场所</button>
+        <div class="dropdown-menu">
+          <a href="#1">机电实验室</a>
+          <a href="#2">电子实验室</a>
+          <a href="#3">电气实验室</a>
+          <a href="#4">数控实验室</a>
+          <a href="#5">金工实验室</a>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="btn-group dropright">
+        <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">创新创业实验</button>
+      </div>
+    </li>
+    <li>
+      <div class="btn-group dropright">
+        <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">视频资源下载</button>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="col-md-11 dropdown" style="margin: -190px 100px 100px 150px;">
+{volist name="labs" id="_lab" key="key"}
+  <h2><a class="text-decoration" id="{$_lab->getData('id')}">{$_lab->getData('name')}</a></h2>
+  <h4 class="text-justify main">{$_lab->getData('content')}</h4>
+  <div style="margin: 25px 10px 0px 900px;">
+    <a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $_lab->getData('id'))}">
+      <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
+    </a>
+  </div>
+{/volist}
+</div>
+
+
+{/block}
+{block name="page"}
+    {$labs->render()}
+{/block}
