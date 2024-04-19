@@ -1,0 +1,17 @@
+{extend name="index"/}
+{block name="title"}
+中心组织机构
+{/block}
+{block name="content"}
+
+<div class="test" >
+  <ul>
+    <li><a :hover:not href="{:url('Introduce/index')}">中心简介</a></li>
+    <li><a :hover:not href="{:url('Teacher/index')}">中心师资</a></li>
+    <li><a :hover:not href="{:url('Rule/index')}">规章制度</a></li>
+    <li><a class="active" :hover:not href="{:url('Centre/index')}">中心组织机构</a></li>
+  </ul>
+</div>
+
+
+    {/block}

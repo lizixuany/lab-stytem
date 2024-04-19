@@ -1,0 +1,42 @@
+{extend name="index"/}
+{block name="title"}
+专业实验场所
+{/block}
+{block name="content"}
+
+<div class="test" style="margin: 60px 0px 0px -8px;">
+  <ul>
+    <li><a :hover:not href="{:url('Idea/index')}">实验教学理念</a></li>
+    <li><a class="active" :hover:not href="{:url('Lab/index')}">专业实验场所</a>
+     
+        <div style="margin: 0px 0px 0px 18px;">
+          <a href="#1">&#149;&nbsp;机电实验室</a>
+          <a href="#2">&#149;&nbsp;电子实验室</a>
+          <a href="#3">&#149;&nbsp;电气实验室</a>
+          <a href="#4">&#149;&nbsp;数控实验室</a>
+          <a href="#5">&#149;&nbsp;金工实验室</a>
+        </div>
+    
+    </li>
+    <li><a :hover:not href="{:url('Create/index')}">创新创业实验</a></li>
+    <li><a :hover:not href="{:url('Video/index')}">视频资源下载</a></li>
+  </ul>
+</div>
+
+<div class="col-md-11 dropdown card" style="margin: 45px 100px 100px 170px;">
+{volist name="labs" id="_lab" key="key"}
+  <h2><a class="text-decoration" id="{$_lab->getData('id')}">{$_lab->getData('name')}</a></h2>
+  <textarea style="width: 975px; height: 380px; padding: 15px;">{$_lab->getData('content')}</textarea>
+  <div style="margin: 25px 10px 0px 900px;">
+    <a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $_lab->getData('id'))}">
+      <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
+    </a>
+  </div>
+{/volist}
+</div>
+
+
+{/block}
+{block name="page"}
+    {$labs->render()}
+{/block}

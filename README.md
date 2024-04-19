@@ -1,5 +1,4 @@
 ThinkPHP 5.0
-===============
 
 [![Downloads](https://img.shields.io/github/downloads/top-think/think/total.svg)](https://github.com/top-think/think/releases)
 [![Releases](https://img.shields.io/github/release/top-think/think.svg)](https://github.com/top-think/think/releases/latest)
@@ -128,3 +127,7 @@ All rights reserved。
 ThinkPHP® 商标和著作权所有者为上海顶想信息科技有限公司。
 
 更多细节参阅 [LICENSE.txt](LICENSE.txt)
+
+# lab-stytem
+学生实验室管理系统
+网站首页
