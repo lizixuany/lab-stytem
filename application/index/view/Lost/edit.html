@@ -1,0 +1,27 @@
+{extend name="edit"} 
+{block name="title"}
+{eq name="Lost->id" value=""}添加{else /}编辑{/eq}
+{/block}
+{block name="content"}
+    {php}$action = request()->action() === 'add' ? 'save' : 'update';{/php}
+    <form action="{:url($action)}" method="post" style="margin: 80px 180px 180px 420px;">
+        <div class="form-group">
+            <input type="hidden" name="id" value="{$Lost->getData('id')}" />
+            <label for="name">物品名称:</label>
+            <input type="text" name="name" id="name" value="{$Lost->name}"/>
+        </div>
+        <div class="form-group">
+            <label for="place">捡拾地点:</label>
+            <input type="text" name="place" id="place" value="{$Lost->getData('place')}"/>
+        </div>
+        <div class="form-group">
+            <label for="location">现放置地点:</label>
+            <input type="text" name="location" id="location" value="{$Lost->getData('location')}"/>
+        </div>       
+        <div class="form-group form-check">
+            <input type="radio" name="state" value="0" id="state0" {eq name="Lost->getData('state')" value="0"}checked="checked"{/eq}/><label for="state0">未招领</label>
+            <input type="radio" name="state" value="1" id="state1" {eq name="Lost->getData('state')" value="1"}checked="checked"{/eq}/><label for="state1">已招领</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+{/block}
