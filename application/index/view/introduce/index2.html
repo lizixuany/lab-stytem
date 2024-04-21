@@ -1,7 +1,7 @@
 {extend name="index2"} 
 {block name="content"}
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-2">
             <div class="text-center">
                 <h1>中心概况</h1>
             </div>
@@ -12,8 +12,12 @@
                 <li><a href="{:url('centre/index2')}">中心组织机构</a></li>
             </u1>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-10">
             <h2 class="text-center">中心简介</h2>
+            {volist name="introduces" id="_introduce" key="key"}
+            <h2><a class="text-decoration">中心简介</a></h2>
+            <textarea style="width: 975px; height: 350px; padding: 15px;">{$_introduce->getData('content')}</textarea>
+            {/volist}
         </div>
     </div>
 {/block}

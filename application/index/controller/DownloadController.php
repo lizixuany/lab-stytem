@@ -9,7 +9,7 @@ class DownloadController extends Controller
 	public function index()
 	{    
 		// 获取查询信息
-		$name = Request::instance()->get('content');
+		$content = Request::instance()->get('content');
 
 		// 实例化F
 		$Download = new Download;
@@ -127,6 +127,17 @@ class DownloadController extends Controller
     }
 
 	public function index2(){
+		// 获取查询信息
+		$content = Request::instance()->get('content');
+
+		// 实例化F
+		$Download = new Download;
+
+		// 定制查询信息
+		if (!empty($content)) {
+			$Download->where('content', 'like', '%' . $content . '%');
+		}
+
 		$downloads = Download::paginate(5);
 		$this->assign('downloads', $downloads);
 

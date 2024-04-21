@@ -9,7 +9,7 @@ class NoticeController extends Controller
 	public function index()
 	{    
 		// 获取查询信息
-		$name = Request::instance()->get('content');
+		$content = Request::instance()->get('content');
 
 		// 实例化F
 		$Notice = new Notice;
@@ -127,6 +127,17 @@ class NoticeController extends Controller
     }
 
 	public function index2(){
+		// 获取查询信息
+		$content = Request::instance()->get('content');
+
+		// 实例化F
+		$Notice = new Notice;
+
+		// 定制查询信息
+		if (!empty($content)) {
+			$Notice->where('content', 'like', '%' . $content . '%');
+		}
+
 		$notices = Notice::paginate(5);
 		$this->assign('notices', $notices);
 

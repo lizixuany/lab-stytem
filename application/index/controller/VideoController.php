@@ -9,7 +9,7 @@ class VideoController extends Controller
 	public function index()
 	{    
 		// 获取查询信息
-		$name = Request::instance()->get('content');
+		$content = Request::instance()->get('content');
 
 		// 实例化F
 		$Video = new Video;
@@ -126,10 +126,21 @@ class VideoController extends Controller
         return $Video->validate()->save();
     }
 
-    public function index2(){
-        $videos = Video::paginate(5);
+	public function index2(){
+		// 获取查询信息
+		$content = Request::instance()->get('content');
+
+		// 实例化F
+		$Video = new Video;
+
+		// 定制查询信息
+		if (!empty($content)) {
+			$Video->where('content', 'like', '%' . $content . '%');
+		}
+
+		$videos = Video::paginate(5);
 		$this->assign('videos', $videos);
 
 		return $this->fetch();
-    }
+	}
 }

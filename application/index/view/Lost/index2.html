@@ -7,6 +7,14 @@
         </div>
     </div>
     <div class="col-sm-9">
+        <form class="form-inline">
+            <div class="form-group">
+                <label class="sr-only" for="name">物品名称</label>
+                <input name="name" type="text" class="form-control" placeholder="物品名称..." value={:input('get.name')}>
+            </div>
+            <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+        </form>
+        <br>
         <table class="table table-hover table-bordered">
             <tr class="info">
                 <th>序号</th>

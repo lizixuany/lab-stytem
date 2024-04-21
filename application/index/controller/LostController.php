@@ -131,6 +131,16 @@ class LostController extends Controller
     }
 
 	public function index2(){
+		// 获取查询信息
+		$name = Request::instance()->get('name');
+
+		// 实例化F
+		$Lost = new Lost;
+
+		// 定制查询信息
+		if (!empty($name)) {
+			$Lost->where('name', 'like', '%' . $name . '%');
+		}
 
 		$losts = Lost::paginate(5);
 		$this->assign('losts', $losts);
@@ -145,15 +155,5 @@ class LostController extends Controller
 
 		return $this->fetch();
 	}
-
-	public function download()
-    {
-    	$download =  new \think\response\Download('image.jpg');
-        return $download->name('my.jpg');
-        // 或者使用助手函数完成相同的功能
-    	// download是系统封装的一个助手函数
-        return download('image.jpg', 'my.jpg');
-    }
-
 
 }
