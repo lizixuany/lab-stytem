@@ -1,26 +1,26 @@
 <?php
 namespace app\index\controller;
-use app\common\model\Lab;
+use app\common\model\Idea;
 use think\Request;                  // 引用Request
 use think\Controller;
 
-class LabController extends Controller
+class IdeaController extends Controller
 {
 	public function index()
 	{    
 		// 获取查询信息
-		$name = Request::instance()->get('name');
+		$name = Request::instance()->get('content');
 
 		// 实例化F
-		$Lab = new Lab;
+		$Idea = new Idea;
 
 		// 定制查询信息
 		if (!empty($name)) {
-			$Lab->where('name', 'like', '%' . $name . '%');
+			$Idea->where('name', 'like', '%' . $name . '%');
 		}
 
-		$labs = Lab::paginate(5);
-		$this->assign('labs', $labs);
+		$ideas = Idea::paginate(5);
+		$this->assign('ideas', $ideas);
 
 		return $this->fetch();
 	}
@@ -28,14 +28,13 @@ class LabController extends Controller
 	public function add() 
 	{
 		// 实例化
-		$Lab = new Lab;
+		$Idea = new Idea;
 
 		// 设置默认值
-		$Lab->id = 0;
-		$Lab->name = '';
-		$Lab->content = '';
+		$Idea->id = 0;
+		$Idea->content = '';
 
-		$this->assign('Lab', $Lab);
+		$this->assign('Idea', $Idea);
 
 		return $this->fetch('edit');
 	}
@@ -43,11 +42,11 @@ class LabController extends Controller
 	public function save() 
 	{
 		// 实例化请求信息
-       $Lab = new Lab;
+       $Idea = new Idea;
        
         // 新增数据
-        if (!$this->saveLab($Lab)) {
-            return $this->error('操作失败' . $Lab->getError());
+        if (!$this->saveIdea($Idea)) {
+            return $this->error('操作失败' . $Idea->getError());
         }
 
         return $this->success('操作成功', url('index'));
@@ -58,11 +57,11 @@ class LabController extends Controller
 		$id = Request::instance()->param('id/d');
 
 		// 判断是否存在当前记录
-		if (is_null($Lab = Lab::get($id))) {
+		if (is_null($Idea = Idea::get($id))) {
 			return $this->error('未找到ID为' . $id . '的记录');
 		}
 
-		$this->assign('Lab', $Lab);
+		$this->assign('Idea', $Idea);
 		return $this->fetch();
 	}
 
@@ -71,14 +70,14 @@ class LabController extends Controller
 		$id = Request::instance()->post('id/d');
 
         // 获取传入的班级信息
-        $Lab = Lab::get($id);
-        if (is_null($Lab)) {
+        $Idea = Idea::get($id);
+        if (is_null($Idea)) {
             return $this->error('系统未找到ID为' . $id . '的记录');
         }
 
         // 新增数据
-        if (!$this->saveLab($Lab)) {
-            return $this->error('操作失败' . $Lab->getError());
+        if (!$this->saveIdea($Idea)) {
+            return $this->error('操作失败' . $Idea->getError());
         }
 
         return $this->success('操作成功', url('index'));
@@ -93,16 +92,16 @@ class LabController extends Controller
 		}
 
 		// 获取要删除的对象
-		$Lab = Lab::get($id);
+		$Idea = Idea::get($id);
 
 		// 要删除的对象不存在
-		if (is_null($Lab)) {
+		if (is_null($Idea)) {
 			return $this->error('不存在id为' . $id . '的教师，删除失败');
 		}
 
 		// 删除对象
-		if (!$Lab->delete()) {
-			return $this->error('删除失败:' . $Lab->getError());
+		if (!$Idea->delete()) {
+			return $this->error('删除失败:' . $Idea->getError());
 		}
 
 		// 进行跳转
@@ -111,25 +110,24 @@ class LabController extends Controller
 
 	/**
      * 对数据进行保存或更新
-     * @param    Lab                  &$Lab 专业实验室
+     * @param    Idea                  &$Idea 实验教学理念
      * @return   bool                             
      * @author 梦云智 http://www.mengyunzhi.com
      * @DateTime 2016-10-24T15:24:29+0800
      */
-    private function saveLab(Lab &$Lab) 
+    private function saveIdea(Idea &$Idea) 
     {
         // 写入要更新的数据
-        $Lab->content = Request::instance()->post('content');
-		$Lab->create_time = Request::instance()->post('create_time');
+        $Idea->content = Request::instance()->post('content');
 
         // 更新或保存
-        return $Lab->validate()->save();
+        return $Idea->validate()->save();
     }
 
-	public function index2(){
-		$labs = Lab::paginate(5);
-		$this->assign('labs', $labs);
+    public function index2(){
+        $ideas = Idea::paginate(5);
+		$this->assign('ideas', $ideas);
 
 		return $this->fetch();
-	}
+    }
 }

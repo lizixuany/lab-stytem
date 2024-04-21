@@ -1,26 +1,26 @@
 <?php
 namespace app\index\controller;
-use app\common\model\Lab;
+use app\common\model\Introduce;
 use think\Request;                  // 引用Request
 use think\Controller;
 
-class LabController extends Controller
+class IntroduceController extends Controller
 {
 	public function index()
 	{    
 		// 获取查询信息
-		$name = Request::instance()->get('name');
+		$name = Request::instance()->get('content');
 
 		// 实例化F
-		$Lab = new Lab;
+		$Introduce = new Introduce;
 
 		// 定制查询信息
 		if (!empty($name)) {
-			$Lab->where('name', 'like', '%' . $name . '%');
+			$Introduce->where('name', 'like', '%' . $name . '%');
 		}
 
-		$labs = Lab::paginate(5);
-		$this->assign('labs', $labs);
+		$introduces = Introduce::paginate(5);
+		$this->assign('introduces', $introduces);
 
 		return $this->fetch();
 	}
@@ -28,14 +28,13 @@ class LabController extends Controller
 	public function add() 
 	{
 		// 实例化
-		$Lab = new Lab;
+		$Introduce = new Introduce;
 
 		// 设置默认值
-		$Lab->id = 0;
-		$Lab->name = '';
-		$Lab->content = '';
+		$Introduce->id = 0;
+		$Introduce->content = '';
 
-		$this->assign('Lab', $Lab);
+		$this->assign('Introduce', $Introduce);
 
 		return $this->fetch('edit');
 	}
@@ -43,11 +42,11 @@ class LabController extends Controller
 	public function save() 
 	{
 		// 实例化请求信息
-       $Lab = new Lab;
+       $Introduce = new Introduce;
        
         // 新增数据
-        if (!$this->saveLab($Lab)) {
-            return $this->error('操作失败' . $Lab->getError());
+        if (!$this->saveIntroduce($Introduce)) {
+            return $this->error('操作失败' . $Introduce->getError());
         }
 
         return $this->success('操作成功', url('index'));
@@ -58,11 +57,11 @@ class LabController extends Controller
 		$id = Request::instance()->param('id/d');
 
 		// 判断是否存在当前记录
-		if (is_null($Lab = Lab::get($id))) {
+		if (is_null($Introduce = Introduce::get($id))) {
 			return $this->error('未找到ID为' . $id . '的记录');
 		}
 
-		$this->assign('Lab', $Lab);
+		$this->assign('Introduce', $Introduce);
 		return $this->fetch();
 	}
 
@@ -71,14 +70,14 @@ class LabController extends Controller
 		$id = Request::instance()->post('id/d');
 
         // 获取传入的班级信息
-        $Lab = Lab::get($id);
-        if (is_null($Lab)) {
+        $Introduce = Introduce::get($id);
+        if (is_null($Introduce)) {
             return $this->error('系统未找到ID为' . $id . '的记录');
         }
 
         // 新增数据
-        if (!$this->saveLab($Lab)) {
-            return $this->error('操作失败' . $Lab->getError());
+        if (!$this->saveIntroduce($Introduce)) {
+            return $this->error('操作失败' . $Introduce->getError());
         }
 
         return $this->success('操作成功', url('index'));
@@ -93,16 +92,16 @@ class LabController extends Controller
 		}
 
 		// 获取要删除的对象
-		$Lab = Lab::get($id);
+		$Introduce = Introduce::get($id);
 
 		// 要删除的对象不存在
-		if (is_null($Lab)) {
+		if (is_null($Introduce)) {
 			return $this->error('不存在id为' . $id . '的教师，删除失败');
 		}
 
 		// 删除对象
-		if (!$Lab->delete()) {
-			return $this->error('删除失败:' . $Lab->getError());
+		if (!$Introduce->delete()) {
+			return $this->error('删除失败:' . $Introduce->getError());
 		}
 
 		// 进行跳转
@@ -111,25 +110,24 @@ class LabController extends Controller
 
 	/**
      * 对数据进行保存或更新
-     * @param    Lab                  &$Lab 专业实验室
+     * @param    Introduce                  &$Introduce 中心简介
      * @return   bool                             
      * @author 梦云智 http://www.mengyunzhi.com
      * @DateTime 2016-10-24T15:24:29+0800
      */
-    private function saveLab(Lab &$Lab) 
+    private function saveIntroduce(Introduce &$Introduce) 
     {
         // 写入要更新的数据
-        $Lab->content = Request::instance()->post('content');
-		$Lab->create_time = Request::instance()->post('create_time');
+        $Introduce->content = Request::instance()->post('content');
 
         // 更新或保存
-        return $Lab->validate()->save();
+        return $Introduce->validate()->save();
     }
 
-	public function index2(){
-		$labs = Lab::paginate(5);
-		$this->assign('labs', $labs);
+    public function index2(){
+        $introduces = Introduce::paginate(5);
+		$this->assign('introduces', $introduces);
 
 		return $this->fetch();
-	}
+    }
 }
