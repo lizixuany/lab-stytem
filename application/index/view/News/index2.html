@@ -9,8 +9,8 @@
     <div class="col-sm-9">
         <form class="form-inline">
             <div class="form-group">
-                <label class="sr-only" for="name">关键字</label>
-                <input name="name" type="text" class="form-control" placeholder="关键字..." value={:input('get.content')}>
+                <label class="sr-only" for="content">关键字</label>
+                <input name="content" type="text" class="form-control" placeholder="关键字..." value={:input('get.content')}>
             </div>
             <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
         </form>
@@ -21,11 +21,11 @@
                 <th>内容</th>
                 <th>发布时间</th>
             </tr>
-            {volist name="newsletterses" id="_newsletters" key="key"}
+            {volist name="newses" id="_news" key="key"}
             <tr>
                 <td>{$key}</td>
-                <td>{$_newsletters->getData('content')}</td>
-                <td>{$_newsletters->getData('create_time')}</td>
+                <td>{$_news->getData('content')}</td>
+                <td>{$_news->getData('create_time')}</td>
             </tr>
             {/volist}
         </table>
