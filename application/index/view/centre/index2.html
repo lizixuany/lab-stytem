@@ -14,6 +14,11 @@
         </div>
         <div class="col-sm-10">
             <h2 class="text-center">中心组织机构</h2>
+            <form action="{:url('Centre/upload')}" enctype="multipart/form-data" method="post" style="margin: 100px 0px 0px 180px;">
+                {volist name="centres" id="_centre" key="key"}
+                <img src="{$_centre->getData('content')}" width="800" height="400">
+                {/volist}
+              </form>
         </div>
     </div>
 {/block}

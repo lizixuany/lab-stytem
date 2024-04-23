@@ -81,4 +81,12 @@ class IndexController extends Controller
 
 		return $this->fetch();
 	}
+
+    public function newsDetail($id){
+        //根据新闻ID从数据库获取新闻数据详情
+        $newsDetail = News::get($id);
+
+        //渲染新闻详情页面
+        return $this->fetch('news_detail',['newsDetail' => $newsDetail]);
+    }
 }

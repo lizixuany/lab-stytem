@@ -33,7 +33,7 @@ class DownloadController extends Controller
 		// 设置默认值
 		$Download->id = 0;
 		$Download->content = '';
-		$Download->create_time = '0';
+		$Download->create_time = '';
 
 		$this->assign('Download', $Download);
 
@@ -125,6 +125,38 @@ class DownloadController extends Controller
         // 更新或保存
         return $Download->validate()->save();
     }
+
+	public function upload(){
+		// 获取表单上传文件 例如：1.png
+		$file = request()->file('image');
+
+		// 移动到框架应用根目录/public/Downloa/ 目录下
+		if($file){
+			$info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'Download','');
+			
+			if($info){
+				// 成功上传后 获取上传信息
+				// a902d02fae5cdd89f86aacc71730ac15.png
+				$filename = $info->getFilename(); 
+
+				// 实例化请求信息
+				$Request = Request::instance();
+				$id = Request::instance()->param('id/d');
+
+				// 判断是否存在当前记录
+				if (is_null($Download = Download::get($id))) {
+					return $this->error('未找到ID为' . $id . '的记录');
+				}
+				$location = '/thinkphp5/public/Download/' . "$filename";
+				$Download->location = $location;
+		
+				return $this->success('操作成功');
+			}else{
+				// 上传失败获取错误信息
+				echo $file->getError();
+			}
+		}
+	}
 
 	public function index2(){
 		// 获取查询信息
