@@ -38,11 +38,11 @@
                 </div>       
             </div>
             <div class="col-md-6">
-                <p><a href="#">新闻1新闻1新闻1新闻1新闻1新闻1新闻1新闻1</a></p>
-                <p><a href="#">新闻2新闻2新闻2新闻2新闻2新闻2新闻2新闻2</a></p>
-                <p><a href="#">新闻3新闻3新闻3新闻3新闻3新闻3新闻3新闻3</a></p>
-                <p><a href="#">新闻4新闻4新闻4新闻4新闻4新闻4新闻4新闻4</a></p>
-                <p><a href="#">新闻5新闻5新闻5新闻5新闻5新闻5新闻5新闻5</a></p>
+                <ul>
+                    <?php foreach($newsList as $news): ?>
+                        <li><a href="#"><?php echo $news['content']; ?></a></li>
+                    <?php endforeach; ?>
+                </ul>
             </div>
         </div>
     </div>
@@ -50,11 +50,11 @@
         <b style="font-size:20px;">公告通知</b>&nbsp;
         <i style="text-align:right;"><a href="{:url('notice/index2')}">MORE</a></i>
         <hr>
-        <p><a href="#">公告1</a></p>
-        <p><a href="#">公告2</a></p>
-        <p><a href="#">公告3</a></p>
-        <p><a href="#">公告4</a></p>
-        <p><a href="#">公告5</a></p>
+        <ul>
+            <?php foreach($noticeList as $notice): ?>
+                <li><a href="#"><?php echo $notice['content']; ?></a></li>
+            <?php endforeach; ?>
+        </ul>
     </div>
 </div>
 <br><br>
@@ -63,29 +63,31 @@
         <b style="font-size:20px;">资料下载</b>&nbsp;
         <i style="text-align:right;"><a href="{:url('download/index2')}">MORE</a></i>
         <hr>
-        <p><a href="#">资料1</a></p>
-        <p><a href="#">资料2</a></p>
-        <p><a href="#">资料3</a></p>
-        <p><a href="#">资料4</a></p>
-        <p><a href="#">资料5</a></p>
+        <ul>
+            <?php foreach($downloadList as $download): ?>
+                <li><a href="#"><?php echo $download['content']; ?></a></li>
+            <?php endforeach; ?>
+        </ul>
     </div>
     <div class="col-md-4">
         <b style="font-size:20px;">失物招领</b>&nbsp;
         <i style="text-align:right;"><a href="{:url('lost/index2')}">MORE</a></i>
         <hr>
-        <p><a href="{:url('Lost/index2')}">1</a></p>
-        <p><a href="#">失物招领2</a></p>
-        <p><a href="#">失物招领3</a></p>
-        <p><a href="#">失物招领4</a></p>
-        <p><a href="#">失物招领5</a></p>
+        <ul>
+            <?php foreach($lostList as $lost): ?>
+                <li><a href="#"><?php echo $lost['name']; ?></a></li>
+            <?php endforeach; ?>
+        </ul>
     </div>
     <div class="col-md-4">
-        <b style="font-size:20px;">实验室简介</b>&nbsp;
-        <i style="text-align:right;"><a href="{:url('introduce/index2')}">MORE</a></i>
+        <b style="font-size:20px;">专业实验场所</b>&nbsp;
+        <i style="text-align:right;"><a href="{:url('lab/index2')}">MORE</a></i>
         <hr>
-        <p><a href="#">实验室简介1</a></p>
-        <p><a href="#">实验室简介2</a></p>
-        <p><a href="#">实验室简介3</a></p>
+        <ul>
+            <?php foreach($labList as $lab): ?>
+                <li><a href="#"><?php echo $lab['name']; ?></a></li>
+            <?php endforeach; ?>
+        </ul>
     </div>
 </div> 
 {/block}       

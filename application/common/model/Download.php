@@ -7,5 +7,12 @@ use think\Model;    //  导入think\Model类
  */
 class Download extends Model
 {
+    //指定数组表名
+    protected $table = 'yunzhi_download';
+
+    //获取新闻列表
+    public function getList(){
+        return $this->field('id,content')->order('id','desc')->select();
+    }
 
 }

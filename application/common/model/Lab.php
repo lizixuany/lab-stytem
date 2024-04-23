@@ -7,5 +7,11 @@ use think\Model;    //  导入think\Model类
  */
 class Lab extends Model
 {
+    //指定数组表名
+    protected $table = 'yunzhi_lab';
 
+    //获取新闻列表
+    public function getList(){
+        return $this->field('id,name')->order('id','desc')->select();
+    }
 }
