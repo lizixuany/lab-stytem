@@ -89,4 +89,36 @@ class IndexController extends Controller
         //渲染新闻详情页面
         return $this->fetch('news_detail',['newsDetail' => $newsDetail]);
     }
+
+    public function noticeDetail($id){
+        //根据新闻ID从数据库获取新闻数据详情
+        $noticeDetail = Notice::get($id);
+
+        //渲染新闻详情页面
+        return $this->fetch('notice_detail',['noticeDetail' => $noticeDetail]);
+    }
+
+    public function downloadDetail($id){
+        //根据新闻ID从数据库获取新闻数据详情
+        $downloadDetail = Download::get($id);
+
+        //渲染新闻详情页面
+        return $this->fetch('download_detail',['downloadDetail' => $downloadDetail]);
+    }
+
+    public function lostDetail($id){
+        //根据新闻ID从数据库获取新闻数据详情
+        $lostDetail = Lost::get($id);
+
+        //渲染新闻详情页面
+        return $this->fetch('lost_detail',['lostDetail' => $lostDetail]);
+    }
+
+    public function labDetail($id){
+        //根据新闻ID从数据库获取新闻数据详情
+        $labDetail = Lab::get($id);
+
+        //渲染新闻详情页面
+        return $this->fetch('lab_detail',['labDetail' => $labDetail]);
+    }
 }

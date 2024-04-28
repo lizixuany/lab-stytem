@@ -2,7 +2,7 @@
 namespace app\common\validate;
 use think\Validate;
 
-class Newsletters extends Validate
+class News extends Validate
 {
     protected $rule = [
         'content'  => 'require',

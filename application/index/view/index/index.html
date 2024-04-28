@@ -52,7 +52,7 @@
         <hr>
         <ul>
             <?php foreach($noticeList as $notice): ?>
-                <li><a href="#"><?php echo $notice['content']; ?></a></li>
+                <li><a href="<?php echo url('index/noticeDetail',['id'=>$notice['id']]);?>"><?php echo $notice['content']; ?></a></li>
             <?php endforeach; ?>
         </ul>
     </div>
@@ -65,7 +65,7 @@
         <hr>
         <ul>
             <?php foreach($downloadList as $download): ?>
-                <li><a href="#"><?php echo $download['content']; ?></a></li>
+                <li><a href="<?php echo url('index/downloadDetail',['id'=>$download['id']]);?>"><?php echo $download['content']; ?></a></li>
             <?php endforeach; ?>
         </ul>
     </div>
@@ -75,7 +75,7 @@
         <hr>
         <ul>
             <?php foreach($lostList as $lost): ?>
-                <li><a href="#"><?php echo $lost['name']; ?></a></li>
+                <li><a href="<?php echo url('index/lostDetail',['id'=>$lost['id']]);?>"><?php echo $lost['name']; ?></a></li>
             <?php endforeach; ?>
         </ul>
     </div>
@@ -85,7 +85,7 @@
         <hr>
         <ul>
             <?php foreach($labList as $lab): ?>
-                <li><a href="#"><?php echo $lab['name']; ?></a></li>
+                <li><a href="<?php echo url('index/labDetail',['id'=>$lab['id']]);?>"><?php echo $lab['name']; ?></a></li>
             <?php endforeach; ?>
         </ul>
     </div>

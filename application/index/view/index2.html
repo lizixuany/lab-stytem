@@ -12,6 +12,28 @@
             background-color: #990099;
             height:60px;
         }
+
+        .navbar-brand {
+            color:white;
+        }
+
+        .navbar-brand:hover{
+            color:#fff;
+        }
+
+        .navbar-nav > li > a {
+            color:white;
+            font-size:18px;
+        }
+
+        .navbar-nav > li > a:hover {
+            color :#fff;
+        }
+
+        .active {
+            background-color:#131613;
+        }
+
         .dropbtn {
             background-color: #990099;
             color:white;
@@ -83,29 +105,29 @@
                 <div class="container-fluid">
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <div class="dropdown"><a class="dropbtn"  href="{:url('index/index')}">网站首页</a></div>
+                            <div class="dropdown"><a class="dropbtn nav-link"  href="{:url('index/index')}">网站首页</a></div>
                             <div class="dropdown">
                                 <button class="dropbtn">中心概况</button>
                                 <div class="dropdown-content" style="z-index: 3;">
-                                  <a href="{:url('introduce/index2')}">中心简介</a>
-                                  <a href="{:url('teacher/index2')}">中心师资</a>
-                                  <a href="{:url('rule/index2')}">规章制度</a>
-                                  <a href="{:url('centre/index2')}">中心组织机构</a>
+                                  <a href="{:url('introduce/index2')}" class="nav-link">中心简介</a>
+                                  <a href="{:url('teacher/index2')}" class="nav-link">中心师资</a>
+                                  <a href="{:url('rule/index2')}" class="nav-link">规章制度</a>
+                                  <a href="{:url('centre/index2')}" class="nav-link">中心组织机构</a>
                                 </div>
                             </div>
                             <div class="dropdown">
                                 <button class="dropbtn">实验教学</button>
                                 <div class="dropdown-content" style="z-index: 3;">
-                                  <a href="{:url('idea/index2')}">实验教学理念</a>
-                                  <a href="{:url('lab/index2')}">专业实验场所</a>
-                                  <a href="{:url('create/index2')}">创新创业实验</a>
-                                  <a href="{:url('video/index2')}">视频资源下载</a>
+                                  <a href="{:url('idea/index2')}" class="nav-link">实验教学理念</a>
+                                  <a href="{:url('lab/index2')}" class="nav-link">专业实验场所</a>
+                                  <a href="{:url('create/index2')}" class="nav-link">创新创业实验</a>
+                                  <a href="{:url('video/index2')}" class="nav-link">视频资源下载</a>
                                 </div>
                             </div>
-                            <div class="dropdown"><a class="dropbtn"  href="{:url('news/index2')}">新闻简讯</a></div>
-                            <div class="dropdown"><a class="dropbtn"  href="{:url('notice/index2')}">公告通知</a></div>
-                            <div class="dropdown"><a class="dropbtn"  href="{:url('lost/index2')}">失物招领</a></div>
-                            <div class="dropdown"><a class="dropbtn"  href="{:url('download/index2')}">资料下载</a></div>
+                            <div class="dropdown"><a class="dropbtn nav-link"  href="{:url('news/index2')}">新闻简讯</a></div>
+                            <div class="dropdown"><a class="dropbtn nav-link"  href="{:url('notice/index2')}">公告通知</a></div>
+                            <div class="dropdown"><a class="dropbtn nav-link"  href="{:url('lost/index2')}">失物招领</a></div>
+                            <div class="dropdown"><a class="dropbtn nav-link"  href="{:url('download/index2')}">资料下载</a></div>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li style="margin-top: 17px;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -131,5 +153,13 @@
     <div class="jumbotron text-center" style="margin-bottom:0;background-color:#990099;font-size:30px;">
         <p>版权 © yunzhi.club</p>
     </div>
+    <script>
+        $(document).ready(function(){
+            $(".nav-link").click(function(){
+                $(".nav-link").removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+    </script>
 </body>
 </html>
