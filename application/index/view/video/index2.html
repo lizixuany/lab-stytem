@@ -2,46 +2,24 @@
 {block name="content"}
     <div class="row">
         <div class="col-sm-2">
-            <div class="text-center">
-                <h1>实验教学</h1>
-            </div>
-            <u1 class="nav nav-pills nav-stacked">
+            <div class="text-center" id="myhead">
+                <h1>实验教学</h1><i>SHI YAN JIAO XUE</i>
+            </div>&nbsp;
+            <u1 id="mynav" class="nav nav-pills nav-stacked">
                 <li><a href="{:url('idea/index2')}">实验教学理念</a></li>
                 <li><a href="{:url('lab/index2')}">专业实验场所</a></li>
                 <li><a href="{:url('create/index2')}">创新创业实验</a></li>
-                <li class="active"><a href="{:url('video/index2')}">视频资源下载</a></li>
+                <li><a class="active" href="{:url('video/index2')}">视频资源下载</a></li>
             </u1>
         </div>
         <div class="col-sm-10">
-            <h2 class="text-center">视频资源下载</h2>
-            <form class="form-inline">
-                <div class="form-group">
-                    <label class="sr-only" for="content">关键字</label>
-                    <input name="content" type="text" class="form-control" placeholder="关键字..." value={:input('get.content')}>
-                </div>
-                <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
-            </form>
-            <br>
-            <table class="table table-hover table-bordered">
-                <tr class="info">
-                    <th>序号</th>
-                    <th>内容</th>
-                    <th>发布时间</th>
-                    <th>操作</th>
-                </tr>
-                {volist name="videos" id="_video" key="key"}
-                <tr>
-                    <td>{$key}</td>
-                    <td>{$_video->getData('content')}</td>
-                    <td>{$_video->getData('create_time')}</td>
-                    <td>                          
-                        <a class="btn btn-sm btn-primary">
-                            <i class="glyphicon glyphicon-sort-by-attributes-alt"></i>&nbsp;下载
-                        </a>
-                    </td>
-                </tr>
+            <h2><a>视频资源下载</a></h2>
+            <hr>
+            <div style="width: 975px; height: 350px; padding: 15px;">
+                {volist name="videos" id="_video" key="key"}                                   
+                    <p class="border-style"><a href="#">>{$_video->getData('content')}</a></p>
                 {/volist}
-            </table>
+            </div>
         </div>
     </div>
 {/block}
