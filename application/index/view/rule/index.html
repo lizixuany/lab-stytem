@@ -4,7 +4,7 @@
 {/block}
 {block name="content"}
 
-<div class="test" style="margin: 60px 0px 0px -8px;">
+<div class="test" style="margin: 60px 0px 0px 0px;">
   <ul>
     <li><a :hover:not href="{:url('Introduce/index')}">中心简介</a></li>
     <li><a :hover:not href="{:url('Teacher/index')}">中心师资</a></li>
@@ -13,7 +13,7 @@
   </ul>
 </div>
 
-<div class="col-md-11 dropdown card" style="margin: 45px 100px 100px 170px;">
+<div class="col-md-11 dropdown card" style="margin: 45px 100px 100px 220px;">
     {volist name="rules" id="_rule" key="key"}
       <h3><a class="text-decoration" id="{$_rule->getData('id')}">{$_rule->getData('name')}</a></h2>
       <textarea style="width: 975px; height: 600px; padding: 15px;">{$_rule->getData('content')}</textarea>

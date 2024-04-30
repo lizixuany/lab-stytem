@@ -32,6 +32,7 @@ class NoticeController extends Controller
 
 		// 设置默认值
 		$Notice->id = 0;
+		$Notice->title = '';
 		$Notice->content = '';
 		$Notice->create_time = '0';
 
@@ -119,6 +120,7 @@ class NoticeController extends Controller
     private function saveNotice(Notice &$Notice) 
     {
         // 写入要更新的数据
+		$Notice->title = Request::instance()->post('title');
         $Notice->content = Request::instance()->post('content');
 		$Notice->create_time = Request::instance()->post('create_time');
 
@@ -127,34 +129,12 @@ class NoticeController extends Controller
     }
 
 	public function index2(){
-		// 获取查询信息
-		$content = Request::instance()->get('content');
-
 		// 实例化F
 		$Notice = new Notice;
-
-		// 定制查询信息
-		if (!empty($content)) {
-			$Notice->where('content', 'like', '%' . $content . '%');
-		}
 
 		$notices = Notice::paginate(5);
 		$this->assign('notices', $notices);
 
 		return $this->fetch();
 	}
-
-	public function noticeDetail(){
-		$noticeId = "这是通知id";
-        $noticeContent = "这是通知内容，可以是一段HTML格式的文本，也可以是纯文本。";
-
-        // 将新闻的标题和内容传递给模板文件
-        $data = array(
-            'id' => $newsId,
-            'content' => $newsContent
-        );
-
-        // 加载模板文件，并将数据传递给模板
-        $this->loadView('notice_detail', $data);
-    }
 }

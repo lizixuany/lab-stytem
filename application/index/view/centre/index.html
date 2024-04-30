@@ -13,7 +13,7 @@
   </ul>
 </div>
 
-<form action="{:url('Centre/upload')}" enctype="multipart/form-data" method="post" style="margin: 100px 0px 0px 180px;">
+<form action="{:url('Centre/upload')}" enctype="multipart/form-data" method="post" style="margin: 100px 0px 0px 240px;">
   {volist name="centres" id="_centre" key="key"}
   <img src="{$_centre->getData('content')}" width="1000" height="480">
   <input type="file" name="image"/>

@@ -10,7 +10,7 @@
         <hr>
         <div id="mylist" style="width: 975px; height: 350px; padding: 15px;">
             {volist name="notices" id="_notice" key="key"}
-                <p class="border-style"><span>{$_notice->getData('create_time')}</span><a href="#">>{$_notice->getData('content')}</a></p>
+                <p class="border-style"><span>{$_notice->getData('create_time')}</span><a href="#">>{$_notice->getData('title')}</a></p>
             {/volist}
         </div>
     </div>

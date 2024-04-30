@@ -129,16 +129,8 @@ class NewsController extends Controller
     }
 
 	public function index2(){
-		// 获取查询信息
-		$content = Request::instance()->get('content');
-
 		// 实例化F
 		$News = new News;
-
-		// 定制查询信息
-		if (!empty($content)) {
-			$News->where('content', 'like', '%' . $content . '%');
-		}
 
 		$newses = News::paginate(5);
 		$this->assign('newses', $newses);
