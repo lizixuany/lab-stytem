@@ -32,6 +32,7 @@ class NewsController extends Controller
 
 		// 设置默认值
 		$News->id = 0;
+		$News->title = '';
 		$News->content = '';
 		$News->create_time = '0';
 
@@ -119,6 +120,7 @@ class NewsController extends Controller
     private function saveNews(News &$News) 
     {
         // 写入要更新的数据
+		$News->title = Request::instance()->post('title');
         $News->content = Request::instance()->post('content');
 		$News->create_time = Request::instance()->post('create_time');
 
@@ -143,18 +145,4 @@ class NewsController extends Controller
 
 		return $this->fetch();
 	}
-
-	public function newsDetail(){
-		$newsId = "这是新闻id";
-        $newsContent = "这是新闻内容，可以是一段HTML格式的文本，也可以是纯文本。";
-
-        // 将新闻的标题和内容传递给模板文件
-        $data = array(
-            'id' => $newsId,
-            'content' => $newsContent
-        );
-
-        // 加载模板文件，并将数据传递给模板
-        $this->loadView('news_detail', $data);
-    }
 }

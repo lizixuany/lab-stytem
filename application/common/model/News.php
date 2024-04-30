@@ -12,6 +12,6 @@ class News extends Model
 
     //获取新闻列表
     public function getList(){
-        return $this->field('id,content')->order('id','desc')->select();
+        return $this->field('id,title')->order('id','desc')->select();
     }
 }

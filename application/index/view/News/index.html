@@ -24,6 +24,7 @@
         <table class="table table-hover table-bordered">
             <tr class="info">
                 <th>序号</th>
+                <th>标题</th>
                 <th>内容</th>
                 <th>发布时间</th>
                 <th>操作</th>
@@ -31,12 +32,13 @@
             {volist name="newses" id="_news" key="key"}
             <tr>
                 <td>{$key}</td>
+                <td>{$_news->getData('title')}</td>
                 <td>{$_news->getData('content')}</td>
                 <td>{$_news->getData('create_time')}</td>
                 <td>                          
                     <a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $_news->getData('id'))}">
                         <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
-                    </a>&nbsp;
+                    </a>
                     <a class="btn btn-danger btn-sm" href="{:url('delete?id=' . $_news->getData('id'))}">
                         <i class="glyphicon glyphicon-trash"></i>&nbsp;删除
                     </a> 

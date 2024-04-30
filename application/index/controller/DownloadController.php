@@ -183,7 +183,7 @@ class DownloadController extends Controller
         // 将新闻的标题和内容传递给模板文件
         $data = array(
             'id' => $downloadId,
-            'content' => $downloadContent
+            'c ontent' => $downloadContent
         );
 
         // 加载模板文件，并将数据传递给模板
