@@ -1,0 +1,17 @@
+{extend name="index2"}
+{block name="content"}
+<div class="row">
+    <div class="col-sm-2">
+        <div class="text-center" id="myhead">
+            <h1>中心师资</h1><i>ZHONG XIN SHI ZI</i>
+        </div>
+    </div>
+    <div class="col-sm-10">
+        <h3><b><?php echo $teacherDetail['name']; ?></b></h3>
+        <hr>
+        <p style="font-size: 15px;">简介：<?php echo $teacherDetail['content']; ?></p>
+        <p style="font-size: 15px;">研究方向：<?php echo $teacherDetail['study']; ?></p>
+        <p style="font-size: 15px;">成就：<?php echo $teacherDetail['success']; ?></p>
+    </div>
+</div>
+{/block}

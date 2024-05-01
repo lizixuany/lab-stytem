@@ -131,42 +131,16 @@ class LostController extends Controller
     }
 
 	public function index2(){
-		// 获取查询信息
-		$name = Request::instance()->get('name');
+		//失物招领
+        //获取数据
+        $lost= new Lost();
+        $lostList = $lost->getList();
 
-		// 实例化F
-		$Lost = new Lost;
+        //传递给首页模板
+        $this->assign('lostList',$lostList);
 
-		// 定制查询信息
-		if (!empty($name)) {
-			$Lost->where('name', 'like', '%' . $name . '%');
-		}
-
-		$losts = Lost::paginate(5);
-		$this->assign('losts', $losts);
-
-		return $this->fetch();
+		//渲染首页模板
+        return $this->fetch();
 	}
 
-	public function index3(){
-
-		$losts = Lost::paginate(5);
-		$this->assign('losts', $losts);
-
-		return $this->fetch();
-	}
-
-	public function lostDetail(){
-		$lostId = "这是下载id";
-        $lostContent = "这是下载内容，可以是一段HTML格式的文本，也可以是纯文本。";
-
-        // 将新闻的标题和内容传递给模板文件
-        $data = array(
-            'id' => $lostId,
-            'content' => $lostContent
-        );
-
-        // 加载模板文件，并将数据传递给模板
-        $this->loadView('lost_detail', $data);
-    }
 }

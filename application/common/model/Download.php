@@ -12,7 +12,7 @@ class Download extends Model
 
     //获取新闻列表
     public function getList(){
-        return $this->field('id,content')->order('id','desc')->select();
+        return $this->field('id,content,create_time,location')->order('id','desc')->select();
     }
 
 }

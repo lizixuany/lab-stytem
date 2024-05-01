@@ -9,9 +9,9 @@
     <div class="col-sm-10">
         <hr>
         <div id="mylist" style="width: 975px; height: 350px; padding: 15px;">
-            {volist name="newses" id="_news" key="key"}
-                <p class="border-style"><span>{$_news->getData('create_time')}</span><a href="#">>{$_news->getData('title')}</a></p>
-            {/volist}
+            <?php foreach($newsList as $news): ?>
+                <p class="border-style"><span><?php echo $news['create_time']; ?></span><a href="<?php echo url('index/newsDetail',['id'=>$news['id']]);?>">><?php echo $news['title']; ?></a></p>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>

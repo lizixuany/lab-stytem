@@ -127,20 +127,15 @@ class VideoController extends Controller
     }
 
 	public function index2(){
-		// 获取查询信息
-		$content = Request::instance()->get('content');
+		//专业实验场所
+        //获取数据
+        $video= new video();
+        $videoList = $video->getList();
 
-		// 实例化F
-		$Video = new Video;
+        //传递给首页模板
+        $this->assign('videoList',$videoList);
 
-		// 定制查询信息
-		if (!empty($content)) {
-			$Video->where('content', 'like', '%' . $content . '%');
-		}
-
-		$videos = Video::paginate(5);
-		$this->assign('videos', $videos);
-
-		return $this->fetch();
+        //渲染首页模板
+        return $this->fetch();
 	}
 }

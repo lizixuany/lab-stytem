@@ -129,12 +129,15 @@ class NewsController extends Controller
     }
 
 	public function index2(){
-		// 实例化F
-		$News = new News;
+		//新闻快讯
+        //获取数据
+        $news= new News();
+        $newsList = $news->getList();
 
-		$newses = News::paginate(5);
-		$this->assign('newses', $newses);
+        //传递给首页模板
+        $this->assign('newsList',$newsList);
 
-		return $this->fetch();
+		//渲染首页模板
+        return $this->fetch();
 	}
 }

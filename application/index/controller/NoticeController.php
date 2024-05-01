@@ -129,12 +129,15 @@ class NoticeController extends Controller
     }
 
 	public function index2(){
-		// 实例化F
-		$Notice = new Notice;
+		//公告通知
+        //获取数据
+        $notice= new Notice();
+        $noticeList = $notice->getList();
 
-		$notices = Notice::paginate(5);
-		$this->assign('notices', $notices);
+        //传递给首页模板
+        $this->assign('noticeList',$noticeList);
 
-		return $this->fetch();
+		//渲染首页模板
+        return $this->fetch();
 	}
 }

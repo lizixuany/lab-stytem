@@ -9,10 +9,11 @@
     <div class="col-sm-10">
         <hr>
         <div id="mylist" style="width: 975px; height: 350px; padding: 15px;">
-            {volist name="losts" id="_lost" key="key"}
-                <p class="border-style"><span>{eq name="_lost->getData('state')" value='0'}未招领{else /}已招领{/eq}</span>
-                <a>>{$_lost->getData('name')}在{$_lost->getData('place')}被捡拾，现放在{$_lost->getData('location')},联系电话：15233839679</a></p>
-            {/volist}
+            <?php foreach($lostList as $lost): ?>
+                <p class="border-style"><span><?php echo $lost['create_time']; ?></span>
+                <a href="<?php echo url('index/lostDetail',['id'=>$lost['id']]);?>">><?php echo $lost['name']; ?>在<?php echo $lost['place']; ?>被捡拾，
+                    现放在<?php echo $lost['location']; ?>,联系电话：15233839679</a></p>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>

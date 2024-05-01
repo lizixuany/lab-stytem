@@ -130,7 +130,7 @@ class DownloadController extends Controller
 		// 获取表单上传文件 例如：1.png
 		$file = request()->file('image');
 
-		// 移动到框架应用根目录/public/Downloa/ 目录下
+		// 移动到框架应用根目录/public/Download/ 目录下
 		if($file){
 			$info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'Download','');
 			
@@ -159,34 +159,15 @@ class DownloadController extends Controller
 	}
 
 	public function index2(){
-		// 获取查询信息
-		$content = Request::instance()->get('content');
+		//资料下载
+        //获取数据
+        $download= new Download();
+        $downloadList = $download->getList();
 
-		// 实例化F
-		$Download = new Download;
+        //传递给首页模板
+        $this->assign('downloadList',$downloadList);
 
-		// 定制查询信息
-		if (!empty($content)) {
-			$Download->where('content', 'like', '%' . $content . '%');
-		}
-
-		$downloads = Download::paginate(5);
-		$this->assign('downloads', $downloads);
-
-		return $this->fetch();
+		//渲染首页模板
+        return $this->fetch();
 	}
-
-	public function downloadDetail(){
-		$downloadId = "这是下载id";
-        $downloadContent = "这是下载内容，可以是一段HTML格式的文本，也可以是纯文本。";
-
-        // 将新闻的标题和内容传递给模板文件
-        $data = array(
-            'id' => $downloadId,
-            'c ontent' => $downloadContent
-        );
-
-        // 加载模板文件，并将数据传递给模板
-        $this->loadView('download_detail', $data);
-    }
 }

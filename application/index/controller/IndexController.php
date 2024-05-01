@@ -7,6 +7,8 @@ use app\common\model\Notice;
 use app\common\model\Download;
 use app\common\model\Lost;
 use app\common\model\Lab;
+use app\common\model\Video;
+use app\common\model\Teacher;
 use app\common\index\LostController;
 
 class IndexController extends Controller
@@ -20,7 +22,7 @@ class IndexController extends Controller
 
         //传递给首页模板
         $this->assign('newsList',$newsList);
-        
+
         //公告通知
         //获取数据
         $notice= new Notice();
@@ -91,34 +93,50 @@ class IndexController extends Controller
     }
 
     public function noticeDetail($id){
-        //根据新闻ID从数据库获取新闻数据详情
+        //根据ID从数据库获取数据详情
         $noticeDetail = Notice::get($id);
 
-        //渲染新闻详情页面
+        //渲染详情页面
         return $this->fetch('notice_detail',['noticeDetail' => $noticeDetail]);
     }
 
     public function downloadDetail($id){
-        //根据新闻ID从数据库获取新闻数据详情
+        //根据下载ID从数据库获取下载数据详情
         $downloadDetail = Download::get($id);
 
-        //渲染新闻详情页面
+        //渲染下载详情页面
         return $this->fetch('download_detail',['downloadDetail' => $downloadDetail]);
     }
 
     public function lostDetail($id){
-        //根据新闻ID从数据库获取新闻数据详情
+        //根据失物招领ID从数据库获取失物招领数据详情
         $lostDetail = Lost::get($id);
 
-        //渲染新闻详情页面
+        //渲染失物招领详情页面
         return $this->fetch('lost_detail',['lostDetail' => $lostDetail]);
     }
 
     public function labDetail($id){
-        //根据新闻ID从数据库获取新闻数据详情
+        //根据实验场所ID从数据库获取实验场所数据详情
         $labDetail = Lab::get($id);
 
-        //渲染新闻详情页面
+        //渲染实验场所详情页面
         return $this->fetch('lab_detail',['labDetail' => $labDetail]);
+    }
+
+    public function videoDetail($id){
+        //根据视频ID从数据库获取新闻数据详情
+        $videoDetail = Video::get($id);
+
+        //渲染新闻详情页面
+        return $this->fetch('video_detail',['videoDetail' => $videoDetail]);
+    }
+
+    public function teacherDetail($id){
+        //根据中心师资ID从数据库获取新闻数据详情
+        $teacherDetail = Teacher::get($id);
+
+        //渲染新闻详情页面
+        return $this->fetch('teacher_detail',['teacherDetail' => $teacherDetail]);
     }
 }

@@ -12,6 +12,6 @@ class Notice extends Model
 
     //获取新闻列表
     public function getList(){
-        return $this->field('id,title')->order('id','desc')->select();
+        return $this->field('id,title,content,create_time')->order('id','desc')->select();
     }
 }

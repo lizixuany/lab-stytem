@@ -16,9 +16,11 @@
             <h2><a>视频资源下载</a></h2>
             <hr>
             <div style="width: 975px; height: 350px; padding: 15px;">
-                {volist name="videos" id="_video" key="key"}                                   
-                    <p class="border-style"><a href="#">>{$_video->getData('content')}</a></p>
-                {/volist}
+                <div id="mylist" style="width: 975px; height: 350px; padding: 15px;">
+                    <?php foreach($videoList as $video): ?>
+                        <p class="border-style"><span><?php echo $video['create_time']; ?></span><a href="<?php echo url('index/videoDetail',['id'=>$video['id']]);?>">><?php echo $video['content']; ?></a></p>
+                    <?php endforeach; ?>
+                </div>
             </div>
         </div>
     </div>

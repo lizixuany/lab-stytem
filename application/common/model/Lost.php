@@ -12,6 +12,6 @@ class Lost extends Model
 
     //获取新闻列表
     public function getList(){
-        return $this->field('id,name')->order('id','desc')->select();
+        return $this->field('id,name,place,create_time,location')->order('id','desc')->select();
     }
 }
