@@ -20,7 +20,7 @@ class IndexController extends Controller
 
         //传递给首页模板
         $this->assign('newsList',$newsList);
-
+        
         //公告通知
         //获取数据
         $notice= new Notice();
