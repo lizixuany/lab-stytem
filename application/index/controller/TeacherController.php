@@ -252,10 +252,16 @@ class TeacherController extends Controller
     }
 
     public function index2(){
+        $pageSize = 5; //每页显示5条数据
+
+
         //中心师资
         //获取数据
         $teacher = new Teacher();
         $teacherList = $teacher->getList();
+
+        //调用分页
+		$teacherList = $teacher->paginate($pageSize);
 
         //传递给首页模板
         $this->assign('teacherList',$teacherList);

@@ -13,6 +13,7 @@
                 <p class="border-style"><span><?php echo $download['create_time']; ?></span><a href="<?php echo url('index/downloadDetail',['id'=>$download['id']]);?>">><?php echo $download['content']; ?></a></p>
             <?php endforeach; ?>
         </div>
+        {$downloadList->render()}
     </div>
 </div>
 {/block}

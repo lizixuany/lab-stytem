@@ -164,10 +164,15 @@ class VideoController extends Controller
 	}
 
 	public function index2(){
+		$pageSize = 5; //每页显示5条数据
+
 		//专业实验场所
         //获取数据
         $video= new video();
         $videoList = $video->getList();
+
+		//调用分页
+		$videoList = $video->paginate($pageSize);
 
         //传递给首页模板
         $this->assign('videoList',$videoList);

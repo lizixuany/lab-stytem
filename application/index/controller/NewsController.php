@@ -129,10 +129,15 @@ class NewsController extends Controller
     }
 
 	public function index2(){
+		$pageSize = 5; //每页显示5条数据
+
 		//新闻快讯
         //获取数据
         $news= new News();
         $newsList = $news->getList();
+		
+		//调用分页
+		$newsList = $news->paginate($pageSize);
 
 		//传递给首页模板
         $this->assign('newsList',$newsList);

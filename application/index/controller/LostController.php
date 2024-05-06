@@ -131,10 +131,15 @@ class LostController extends Controller
     }
 
 	public function index2(){
+		$pageSize = 5; //每页显示5条数据
+
 		//失物招领
         //获取数据
         $lost= new Lost();
         $lostList = $lost->getList();
+
+		//调用分页
+		$lostList = $lost->paginate($pageSize);
 
         //传递给首页模板
         $this->assign('lostList',$lostList);

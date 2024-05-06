@@ -164,10 +164,15 @@ class DownloadController extends Controller
 	}
 
 	public function index2(){
+		$pageSize = 5; //每页显示5条数据
+
 		//资料下载
         //获取数据
         $download= new Download();
         $downloadList = $download->getList();
+
+		//调用分页
+		$downloadList = $download->paginate($pageSize);
 
         //传递给首页模板
         $this->assign('downloadList',$downloadList);

@@ -13,6 +13,7 @@
                 <p class="border-style"><span><?php echo $notice['create_time']; ?></span><a href="<?php echo url('index/noticeDetail',['id'=>$notice['id']]);?>">><?php echo $notice['title']; ?></a></p>
             <?php endforeach; ?>
         </div>
+        {$noticeList->render()}
     </div>
 </div>
 {/block}

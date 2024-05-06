@@ -129,10 +129,15 @@ class NoticeController extends Controller
     }
 
 	public function index2(){
+		$pageSize = 5; //每页显示5条数据
+
 		//公告通知
         //获取数据
         $notice= new Notice();
         $noticeList = $notice->getList();
+
+		//调用分页
+		$noticeList = $notice->paginate($pageSize);
 
         //传递给首页模板
         $this->assign('noticeList',$noticeList);

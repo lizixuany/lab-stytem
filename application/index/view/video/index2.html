@@ -21,7 +21,10 @@
                         <p class="border-style"><span><?php echo $video['create_time']; ?></span><a href="<?php echo url('index/videoDetail',['id'=>$video['id']]);?>">><?php echo $video['content']; ?></a></p>
                     <?php endforeach; ?>
                 </div>
+                {$videoList->render()}
             </div>
         </div>
     </div>
+    <br><br>
+    <br>
 {/block}
