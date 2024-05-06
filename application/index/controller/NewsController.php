@@ -134,7 +134,7 @@ class NewsController extends Controller
         $news= new News();
         $newsList = $news->getList();
 
-        //传递给首页模板
+		//传递给首页模板
         $this->assign('newsList',$newsList);
 
 		//渲染首页模板

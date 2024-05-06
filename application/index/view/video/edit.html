@@ -4,7 +4,14 @@
 {/block}
 {block name="content"}
     {php}$action = request()->action() === 'add' ? 'save' : 'update';{/php}
-    <form action="{:url($action)}" method="post" style="margin: 80px 310px 80px 320px;">
+    <form action="{:url('Video/upload')}" enctype="multipart/form-data" method="post" style="margin: 100px 310px 0px 320px;">
+        <label for="location">上传文件:</label>
+        <input type="hidden" name="id" value="{$Video->getData('id')}" />
+        <input type="file" name="image"/>
+        <input type="submit"value="确定"/>
+        <textarea class="form-control" type="text" name="location" id="location" rows="3">{$Video->location}</textarea>
+    </form>
+    <form action="{:url($action)}" method="post" style="margin: 20px 310px 80px 320px;">
         <div class="form-group">
             <input type="hidden" name="id" value="{$Video->getData('id')}" />
             <label for="content">内容：</label>
@@ -15,5 +22,5 @@
             <input class="form-control" type="date" name="create_time" id="create_time" value="{$Video->getData('create_time')}" />
         </div>
         <button type="submit" class="btn btn-primary" style="margin: 8px 0px 10px 530px;">Submit</button>
-      </form>
+    </form>
 {/block}

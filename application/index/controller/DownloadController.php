@@ -150,6 +150,11 @@ class DownloadController extends Controller
 				$location = '/thinkphp5/public/Download/' . "$filename";
 				$Download->location = $location;
 		
+				// 添加数据
+				if (!$Download->validate(true)->save()) {
+					return $this->error('数据添加错误：' . $Download->getError());
+				}
+		
 				return $this->success('操作成功');
 			}else{
 				// 上传失败获取错误信息

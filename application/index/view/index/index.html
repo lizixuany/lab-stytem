@@ -39,9 +39,16 @@
             </div>
             <div class="col-md-6">
                 <ul>
-                    <?php foreach($newsList as $news): ?>
+                    <?php
+                        $count = 0;
+                        foreach($newsList as $news):
+                            if($count >= 5) break;
+                    ?>
                         <li><a href="<?php echo url('index/newsDetail',['id'=>$news['id']]);?>"><?php echo $news['title']; ?></a></li>
-                    <?php endforeach; ?>
+                    <?php
+                        $count++;
+                        endforeach;
+                    ?>
                 </ul>
             </div>
         </div>
@@ -51,9 +58,16 @@
         <i style="text-align:right;"><a href="{:url('notice/index2')}">MORE</a></i>
         <hr>
         <ul>
-            <?php foreach($noticeList as $notice): ?>
+            <?php
+                $count = 0;
+                foreach($noticeList as $notice):
+                    if($count >= 5) break;
+            ?>
                 <li><a href="<?php echo url('index/noticeDetail',['id'=>$notice['id']]);?>"><?php echo $notice['title']; ?></a></li>
-            <?php endforeach; ?>
+            <?php
+                $count++;
+                endforeach;
+            ?>
         </ul>
     </div>
 </div>
@@ -64,9 +78,16 @@
         <i style="text-align:right;"><a href="{:url('download/index2')}">MORE</a></i>
         <hr>
         <ul>
-            <?php foreach($downloadList as $download): ?>
+            <?php
+                $count = 0;
+                foreach($downloadList as $download):
+                    if($count >= 5) break;
+            ?>
                 <li><a href="<?php echo url('index/downloadDetail',['id'=>$download['id']]);?>"><?php echo $download['content']; ?></a></li>
-            <?php endforeach; ?>
+            <?php
+                $count++;
+                endforeach;
+            ?>
         </ul>
     </div>
     <div class="col-md-4">
@@ -74,9 +95,16 @@
         <i style="text-align:right;"><a href="{:url('lost/index2')}">MORE</a></i>
         <hr>
         <ul>
-            <?php foreach($lostList as $lost): ?>
+            <?php
+                $count = 0;
+                foreach($lostList as $lost):
+                    if($count >= 5) break;
+            ?>
                 <li><a href="<?php echo url('index/lostDetail',['id'=>$lost['id']]);?>"><?php echo $lost['name']; ?></a></li>
-            <?php endforeach; ?>
+            <?php
+                $count++;
+                endforeach;
+            ?>
         </ul>
     </div>
     <div class="col-md-4">
@@ -84,9 +112,16 @@
         <i style="text-align:right;"><a href="{:url('lab/index2')}">MORE</a></i>
         <hr>
         <ul>
-            <?php foreach($labList as $lab): ?>
+            <?php
+                $count = 0;
+                foreach($labList as $lab):
+                    if($count >= 5) break;
+            ?>
                 <li><a href="<?php echo url('index/labDetail',['id'=>$lab['id']]);?>"><?php echo $lab['name']; ?></a></li>
-            <?php endforeach; ?>
+            <?php
+                $count++;
+                endforeach;
+            ?>
         </ul>
     </div>
 </div> 
