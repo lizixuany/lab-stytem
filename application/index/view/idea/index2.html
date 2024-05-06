@@ -1,0 +1,22 @@
+{extend name="index2"} 
+{block name="content"}
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="text-center" id="myhead">
+                <h1>实验教学</h1><i>SHI YAN JIAO XUE</i>
+            </div>&nbsp;
+            <u1 id="mynav" class="nav nav-pills nav-stacked">
+                <li><a class="active" href="{:url('idea/index2')}">实验教学理念</a></li>
+                <li><a href="{:url('lab/index2')}">专业实验场所</a></li>
+                <li><a href="{:url('create/index2')}">创新创业实验</a></li>
+                <li><a href="{:url('video/index2')}">视频资源下载</a></li>
+            </u1>
+        </div>
+        <div class="col-sm-10">
+            {volist name="ideas" id="_idea" key="key"}
+            <h2><a class="text-decoration">实验教学理念</a></h2>
+            <textarea style="width: 975px; height: 250px; padding: 15px;">{$_idea->getData('content')}</textarea>
+            {/volist}
+        </div>
+    </div>
+{/block}

@@ -9,7 +9,7 @@ class NoticeController extends Controller
 	public function index()
 	{    
 		// 获取查询信息
-		$name = Request::instance()->get('content');
+		$content = Request::instance()->get('content');
 
 		// 实例化F
 		$Notice = new Notice;
@@ -32,6 +32,7 @@ class NoticeController extends Controller
 
 		// 设置默认值
 		$Notice->id = 0;
+		$Notice->title = '';
 		$Notice->content = '';
 		$Notice->create_time = '0';
 
@@ -119,6 +120,7 @@ class NoticeController extends Controller
     private function saveNotice(Notice &$Notice) 
     {
         // 写入要更新的数据
+		$Notice->title = Request::instance()->post('title');
         $Notice->content = Request::instance()->post('content');
 		$Notice->create_time = Request::instance()->post('create_time');
 
@@ -127,9 +129,20 @@ class NoticeController extends Controller
     }
 
 	public function index2(){
-		$notices = Notice::paginate(5);
-		$this->assign('notices', $notices);
+		$pageSize = 5; //每页显示5条数据
 
-		return $this->fetch();
+		//公告通知
+        //获取数据
+        $notice= new Notice();
+        $noticeList = $notice->getList();
+
+		//调用分页
+		$noticeList = $notice->paginate($pageSize);
+
+        //传递给首页模板
+        $this->assign('noticeList',$noticeList);
+
+		//渲染首页模板
+        return $this->fetch();
 	}
 }

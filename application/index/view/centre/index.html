@@ -1,0 +1,25 @@
+{extend name="index"/}
+{block name="title"}
+中心组织机构
+{/block}
+{block name="content"}
+
+<div class="test" style="margin: 60px 0px 0px -8px;">
+  <ul>
+    <li><a :hover:not href="{:url('Introduce/index')}">中心简介</a></li>
+    <li><a :hover:not href="{:url('Teacher/index')}">中心师资</a></li>
+    <li><a :hover:not href="{:url('Rule/index')}">规章制度</a></li>
+    <li><a class="active" :hover:not href="{:url('Centre/index')}">中心组织机构</a></li>
+  </ul>
+</div>
+
+<form action="{:url('Centre/upload')}" enctype="multipart/form-data" method="post" style="margin: 100px 0px 0px 240px;">
+  {volist name="centres" id="_centre" key="key"}
+  <img src="{$_centre->getData('content')}" width="1000" height="480">
+  <input type="file" name="image"/>
+  <br>
+  <input type="submit" value="Submit"/> 
+  {/volist}
+</form>
+
+    {/block}

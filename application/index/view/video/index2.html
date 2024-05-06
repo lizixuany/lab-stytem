@@ -1,0 +1,30 @@
+{extend name="index2"} 
+{block name="content"}
+    <div class="row">
+        <div class="col-sm-2">
+            <div class="text-center" id="myhead">
+                <h1>实验教学</h1><i>SHI YAN JIAO XUE</i>
+            </div>&nbsp;
+            <u1 id="mynav" class="nav nav-pills nav-stacked">
+                <li><a href="{:url('idea/index2')}">实验教学理念</a></li>
+                <li><a href="{:url('lab/index2')}">专业实验场所</a></li>
+                <li><a href="{:url('create/index2')}">创新创业实验</a></li>
+                <li><a class="active" href="{:url('video/index2')}">视频资源下载</a></li>
+            </u1>
+        </div>
+        <div class="col-sm-10">
+            <h2><a>视频资源下载</a></h2>
+            <hr>
+            <div style="width: 975px; height: 350px; padding: 15px;">
+                <div id="mylist" style="width: 975px; height: 350px; padding: 15px;">
+                    <?php foreach($videoList as $video): ?>
+                        <p class="border-style"><span><?php echo $video['create_time']; ?></span><a href="<?php echo url('index/videoDetail',['id'=>$video['id']]);?>">><?php echo $video['content']; ?></a></p>
+                    <?php endforeach; ?>
+                </div>
+                {$videoList->render()}
+            </div>
+        </div>
+    </div>
+    <br><br>
+    <br>
+{/block}

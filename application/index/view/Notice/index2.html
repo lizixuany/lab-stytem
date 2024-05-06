@@ -1,26 +1,19 @@
 {extend name="index2"}
 {block name="content"}
 <div class="row">
-    <div class="col-sm-3">
-        <div class="text-center">
-            <h1>公告通知</h1>
+    <div class="col-sm-2">
+        <div class="text-center" id="myhead">
+            <h1>公告通知</h1><i>GONG GAO TONG ZHI</i>
         </div>
     </div>
-    <div class="col-sm-9">
-        <table class="table table-hover table-bordered">
-            <tr class="info">
-                <th>序号</th>
-                <th>内容</th>
-                <th>发布时间</th>
-            </tr>
-            {volist name="notices" id="_notice" key="key"}
-            <tr>
-                <td>{$key}</td>
-                <td>{$_notice->getData('content')}</td>
-                <td>{$_notice->getData('create_time')}</td>
-            </tr>
-            {/volist}
-        </table>
+    <div class="col-sm-10">
+        <hr>
+        <div id="mylist" style="width: 975px; height: 350px; padding: 15px;">
+            <?php foreach($noticeList as $notice): ?>
+                <p class="border-style"><span><?php echo $notice['create_time']; ?></span><a href="<?php echo url('index/noticeDetail',['id'=>$notice['id']]);?>">><?php echo $notice['title']; ?></a></p>
+            <?php endforeach; ?>
+        </div>
+        {$noticeList->render()}
     </div>
 </div>
 {/block}

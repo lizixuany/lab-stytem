@@ -76,6 +76,54 @@
             z-index: 999;
             background-color: white;
         }
+
+        body {
+            margin: 0;
+        }
+
+        ul {
+           list-style-type: none; 
+        }
+
+        .test {
+            margin: 60px 0px 0px -15px;
+            padding: 0;
+            width: 15%;
+            background-color: #f1f1f1;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+            text-align:center
+        }
+
+        .test a {
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            margin: 0px 0px 0px -40px;
+            text-decoration: none;
+        }
+
+        .test a.active {
+            background-color: #990099;
+            color: white;
+            margin: 0px 0px 0px -40px;
+        }
+
+        .test a:hover:not(.active) {
+            background-color: #555;
+            color: white;
+            margin: 0px 0px 0px -40px;
+        }
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-top: 20px;
+            margin-left:20%;
+            margin-right: 0%;
+            width: 950px;
+        }
     </style>
 </head>
 
@@ -92,30 +140,28 @@
                             <div class="dropdown">
                                 <button class="dropbtn">中心概况</button>
                                 <div class="dropdown-content" style="z-index: 3;">
-                                  <a href="#">中心简介</a>
-                                  <a href="#">中心师资</a>
-                                  <a href="#">管理机构</a>
+                                  <a href="{:url('Introduce/index')}">中心简介</a>
+                                  <a href="{:url('Teacher/index')}">中心师资</a>
+                                  <a href="{:url('Rule/index')}">规章制度</a>
+                                  <a href="{:url('Centre/index')}">中心组织机构</a>
                                 </div>
                             </div>
                             <div class="dropdown">
                                 <button class="dropbtn">实验教学</button>
                                 <div class="dropdown-content" style="z-index: 3;">
-                                  <a href="#">实验教学理念</a>
+                                  <a href="{:url('Idea/index')}">实验教学理念</a>
                                   <a href="{:url('Lab/index')}">专业实验场所</a>
-                                  <a href="#">创新创业实验</a>
-                                  <a href="#">视频资源下载</a>
+                                  <a href="{:url('Create/index')}">创新创业实验</a>
+                                  <a href="{:url('Video/index')}">视频资源下载</a>
                                 </div>
                             </div>
-                            <div class="dropdown"><a class="dropbtn"  href="{:url('Newsletters/index')}">新闻简讯</a></div>
+                            <div class="dropdown"><a class="dropbtn"  href="{:url('News/index')}">新闻简讯</a></div>
                             <div class="dropdown"><a class="dropbtn"  href="{:url('Notice/index')}">公告通知</a></div>
                             <div class="dropdown"><a class="dropbtn"  href="{:url('Lost/index')}">失物招领</a></div>
                             <div class="dropdown"><a class="dropbtn"  href="{:url('Download/index')}">资料下载</a></div>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a style="color:white;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                              </svg>欢迎使用</a></li>
+                            <li><a href="{:url('Index/index')}" style="color:white;">返回首页</a></li>
                             <li><a href="{:url('Login/logout')}" style="color:white;">退出登录</a></li>
                         </ul>
                     </div>
@@ -131,3 +177,4 @@
 
 </body>
 </html>
+

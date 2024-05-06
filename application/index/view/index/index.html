@@ -3,7 +3,7 @@
 <div class="row">
     <div class="col-md-8">
         <b style="font-size:20px;">新闻快讯</b>&nbsp;
-        <i style="text-align:right;"><a href="{:url('newsletters/index1')}">MORE</a></i>
+        <i style="text-align:right;"><a href="{:url('news/index2')}">MORE</a></i>
         <hr>
         <div class="row">
             <div class="col-md-6">
@@ -38,11 +38,18 @@
                 </div>       
             </div>
             <div class="col-md-6">
-                <p><a href="#">新闻1新闻1新闻1新闻1新闻1新闻1新闻1新闻1</a></p>
-                <p><a href="#">新闻2新闻2新闻2新闻2新闻2新闻2新闻2新闻2</a></p>
-                <p><a href="#">新闻3新闻3新闻3新闻3新闻3新闻3新闻3新闻3</a></p>
-                <p><a href="#">新闻4新闻4新闻4新闻4新闻4新闻4新闻4新闻4</a></p>
-                <p><a href="#">新闻5新闻5新闻5新闻5新闻5新闻5新闻5新闻5</a></p>
+                <ul>
+                    <?php
+                        $count = 0;
+                        foreach($newsList as $news):
+                            if($count >= 5) break;
+                    ?>
+                        <li><a href="<?php echo url('index/newsDetail',['id'=>$news['id']]);?>"><?php echo $news['title']; ?></a></li>
+                    <?php
+                        $count++;
+                        endforeach;
+                    ?>
+                </ul>
             </div>
         </div>
     </div>
@@ -50,11 +57,18 @@
         <b style="font-size:20px;">公告通知</b>&nbsp;
         <i style="text-align:right;"><a href="{:url('notice/index2')}">MORE</a></i>
         <hr>
-        <p><a href="#">公告1</a></p>
-        <p><a href="#">公告2</a></p>
-        <p><a href="#">公告3</a></p>
-        <p><a href="#">公告4</a></p>
-        <p><a href="#">公告5</a></p>
+        <ul>
+            <?php
+                $count = 0;
+                foreach($noticeList as $notice):
+                    if($count >= 5) break;
+            ?>
+                <li><a href="<?php echo url('index/noticeDetail',['id'=>$notice['id']]);?>"><?php echo $notice['title']; ?></a></li>
+            <?php
+                $count++;
+                endforeach;
+            ?>
+        </ul>
     </div>
 </div>
 <br><br>
@@ -63,29 +77,52 @@
         <b style="font-size:20px;">资料下载</b>&nbsp;
         <i style="text-align:right;"><a href="{:url('download/index2')}">MORE</a></i>
         <hr>
-        <p><a href="#">资料1</a></p>
-        <p><a href="#">资料2</a></p>
-        <p><a href="#">资料3</a></p>
-        <p><a href="#">资料4</a></p>
-        <p><a href="#">资料5</a></p>
+        <ul>
+            <?php
+                $count = 0;
+                foreach($downloadList as $download):
+                    if($count >= 5) break;
+            ?>
+                <li><a href="<?php echo url('index/downloadDetail',['id'=>$download['id']]);?>"><?php echo $download['content']; ?></a></li>
+            <?php
+                $count++;
+                endforeach;
+            ?>
+        </ul>
     </div>
     <div class="col-md-4">
         <b style="font-size:20px;">失物招领</b>&nbsp;
         <i style="text-align:right;"><a href="{:url('lost/index2')}">MORE</a></i>
         <hr>
-        <p><a href="{:url('Lost/index2')}">1</a></p>
-        <p><a href="#">失物招领2</a></p>
-        <p><a href="#">失物招领3</a></p>
-        <p><a href="#">失物招领4</a></p>
-        <p><a href="#">失物招领5</a></p>
+        <ul>
+            <?php
+                $count = 0;
+                foreach($lostList as $lost):
+                    if($count >= 5) break;
+            ?>
+                <li><a href="<?php echo url('index/lostDetail',['id'=>$lost['id']]);?>"><?php echo $lost['name']; ?></a></li>
+            <?php
+                $count++;
+                endforeach;
+            ?>
+        </ul>
     </div>
     <div class="col-md-4">
-        <b style="font-size:20px;">实验室简介</b>&nbsp;
-        <i style="text-align:right;"><a href="#">MORE</a></i>
+        <b style="font-size:20px;">实验场所</b>&nbsp;
+        <i style="text-align:right;"><a href="{:url('lab/index2')}">MORE</a></i>
         <hr>
-        <p><a href="#">实验室简介1</a></p>
-        <p><a href="#">实验室简介2</a></p>
-        <p><a href="#">实验室简介3</a></p>
+        <ul>
+            <?php
+                $count = 0;
+                foreach($labList as $lab):
+                    if($count >= 5) break;
+            ?>
+                <li><a href="<?php echo url('index/labDetail',['id'=>$lab['id']]);?>"><?php echo $lab['name']; ?></a></li>
+            <?php
+                $count++;
+                endforeach;
+            ?>
+        </ul>
     </div>
 </div> 
 {/block}       

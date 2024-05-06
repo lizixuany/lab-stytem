@@ -1,46 +1,23 @@
 {extend name="index"/}
 {block name="title"}
-专业实验场所
+创新创业实验
 {/block}
 {block name="content"}
 
-<div class="col-md-1 dropdown" style="margin: 60px 0px 0px -14px;">
-  <ul class="nav">
-    <li>
-      <div class="btn-group dropright">
-        <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">实验教学理念</button>
-      </div>
-    </li>
-    <li>
-      <div class="btn-group dropright">
-        <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">专业实验场所</button>
-        <div class="dropdown-menu">
-          <a href="#1">机电实验室</a>
-          <a href="#2">电子实验室</a>
-          <a href="#3">电气实验室</a>
-          <a href="#4">数控实验室</a>
-          <a href="#5">金工实验室</a>
-        </div>
-      </div>
-    </li>
-    <li>
-      <div class="btn-group dropright">
-        <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">创新创业实验</button>
-      </div>
-    </li>
-    <li>
-      <div class="btn-group dropright">
-        <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-expanded="false">视频资源下载</button>
-      </div>
-    </li>
+<div class="test" style="margin: 60px 0px 0px -8px;">
+  <ul>
+    <li><a :hover:not href="{:url('Idea/index')}">实验教学理念</a></li>
+    <li><a :hover:not href="{:url('Lab/index')}">专业实验场所</a></li>
+    <li><a class="active" :hover:not href="{:url('Create/index')}">创新创业实验</a></li>
+    <li><a :hover:not href="{:url('Video/index')}">视频资源下载</a></li>
   </ul>
 </div>
 
-<div class="col-md-11 dropdown" style="margin: -190px 100px 100px 150px;">
+<div class="col-md-11 dropdown card" style="margin: 45px 100px 100px 220px;">
 {volist name="creates" id="_create" key="key"}
-  <h2><a class="text-decoration" id="{$_create->getData('id')}">{$_create->getData('name')}</a></h2>
-  <h4 class="text-justify main">{$_create->getData('content')}</h4>
-  <div style="margin: 25px 10px 0px 900px;">
+  <h2><a class="text-decoration">创新创业实验</a></h2>
+  <textarea style="width: 975px; height: 550px; padding: 15px;">{$_create->getData('content')}</textarea>
+  <div style="margin: 25px 0px 0px 900px;">
     <a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $_create->getData('id'))}">
       <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
     </a>

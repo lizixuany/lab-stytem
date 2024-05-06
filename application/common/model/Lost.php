@@ -7,5 +7,11 @@ use think\Model;    //  导入think\Model类
  */
 class Lost extends Model
 {
+    //指定数组表名
+    protected $table = 'yunzhi_lost';
 
+    //获取新闻列表
+    public function getList(){
+        return $this->field('id,name,place,create_time,location')->order('id','desc')->select();
+    }
 }

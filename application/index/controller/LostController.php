@@ -131,29 +131,21 @@ class LostController extends Controller
     }
 
 	public function index2(){
+		$pageSize = 5; //每页显示5条数据
 
-		$losts = Lost::paginate(5);
-		$this->assign('losts', $losts);
+		//失物招领
+        //获取数据
+        $lost= new Lost();
+        $lostList = $lost->getList();
 
-		return $this->fetch();
+		//调用分页
+		$lostList = $lost->paginate($pageSize);
+
+        //传递给首页模板
+        $this->assign('lostList',$lostList);
+
+		//渲染首页模板
+        return $this->fetch();
 	}
-
-	public function index3(){
-
-		$losts = Lost::paginate(5);
-		$this->assign('losts', $losts);
-
-		return $this->fetch();
-	}
-
-	public function download()
-    {
-    	$download =  new \think\response\Download('image.jpg');
-        return $download->name('my.jpg');
-        // 或者使用助手函数完成相同的功能
-    	// download是系统封装的一个助手函数
-        return download('image.jpg', 'my.jpg');
-    }
-
 
 }

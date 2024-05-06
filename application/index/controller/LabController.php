@@ -32,7 +32,7 @@ class LabController extends Controller
 
 		// 设置默认值
 		$Lab->id = 0;
-		$Lad->name = '';
+		$Lab->name = '';
 		$Lab->content = '';
 
 		$this->assign('Lab', $Lab);
@@ -124,5 +124,26 @@ class LabController extends Controller
 
         // 更新或保存
         return $Lab->validate()->save();
+    }
+
+	public function index2(){
+		$labs = Lab::paginate(5);
+		$this->assign('labs', $labs);
+
+		return $this->fetch();
+	}
+
+	public function labDetail(){
+		$labId = "这是专业实验场所id";
+        $labContent = "这是专业实验场所内容，可以是一段HTML格式的文本，也可以是纯文本。";
+
+        // 将新闻的标题和内容传递给模板文件
+        $data = array(
+            'id' => $labId,
+            'content' => $labContent
+        );
+
+        // 加载模板文件，并将数据传递给模板
+        $this->loadView('lab_detail', $data);
     }
 }

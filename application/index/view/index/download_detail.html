@@ -1,0 +1,14 @@
+{extend name="index2"}
+{block name="content"}
+<div class="row">
+    <div class="col-sm-2">
+        <div class="text-center" id="myhead">
+            <h1>资料下载</h1><i>ZI LIAO XIOA ZAI</i>
+        </div>
+    </div>
+    <div class="col-sm-10">
+        <p style="font-size:18px"><?php echo $downloadDetail['content']; ?></p>
+        <i><a href="<?php echo $downloadDetail['location']; ?>">点击此处下载</a></i>
+    </div>
+</div>
+{/block}

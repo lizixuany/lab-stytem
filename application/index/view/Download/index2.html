@@ -1,32 +1,19 @@
 {extend name="index2"}
 {block name="content"}
 <div class="row">
-    <div class="col-sm-3">
-        <div class="text-center">
-            <h1>资料下载</h1>
+    <div class="col-sm-2">
+        <div class="text-center" id="myhead">
+            <h1>资料下载</h1><i>ZI LIAO XIA ZAI</i>
         </div>
     </div>
-    <div class="col-sm-9">
-        <table class="table table-hover table-bordered">
-            <tr class="info">
-                <th>序号</th>
-                <th>内容</th>
-                <th>发布时间</th>
-                <th>操作</th>
-            </tr>
-            {volist name="downloads" id="_download" key="key"}
-            <tr>
-                <td>{$key}</td>
-                <td>{$_download->getData('content')}</td>
-                <td>{$_download->getData('create_time')}</td>
-                <td>                          
-                    <a class="btn btn-sm btn-primary">
-                        <i class="glyphicon glyphicon-sort-by-attributes-alt"></i>&nbsp;下载
-                    </a>
-                </td>
-            </tr>
-            {/volist}
-        </table>
+    <div class="col-sm-10">
+        <hr>
+        <div id="mylist" style="width: 975px; height: 350px; padding: 15px;">
+            <?php foreach($downloadList as $download): ?>
+                <p class="border-style"><span><?php echo $download['create_time']; ?></span><a href="<?php echo url('index/downloadDetail',['id'=>$download['id']]);?>">><?php echo $download['content']; ?></a></p>
+            <?php endforeach; ?>
+        </div>
+        {$downloadList->render()}
     </div>
 </div>
 {/block}

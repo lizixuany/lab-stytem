@@ -1,0 +1,32 @@
+{extend name="index"/}
+{block name="title"}
+实验教学理念
+{/block}
+{block name="content"}
+
+<div class="test" style="margin: 60px 0px 0px -8px;">
+  <ul>
+    <li><a class="active" :hover:not href="{:url('Idea/index')}">实验教学理念</a></li>
+    <li><a :hover:not href="{:url('Lab/index')}">专业实验场所</a></li>
+    <li><a :hover:not href="{:url('Create/index')}">创新创业实验</a></li>
+    <li><a :hover:not href="{:url('Video/index')}">视频资源下载</a></li>
+  </ul>
+</div>
+
+<div class="col-md-11 dropdown card" style="margin: 45px 100px 100px 220px;">
+{volist name="ideas" id="_idea" key="key"}
+  <h2><a class="text-decoration">实验教学理念</a></h2>
+  <textarea style="width: 975px; height: 950px; padding: 15px;">{$_idea->getData('content')}</textarea>
+  <div style="margin: 25px 0px 0px 900px;">
+    <a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $_idea->getData('id'))}">
+      <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
+    </a>
+  </div>
+{/volist}
+</div>
+
+
+{/block}
+{block name="page"}
+    {$ideas->render()}
+{/block}
