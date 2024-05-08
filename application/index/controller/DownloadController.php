@@ -34,6 +34,7 @@ class DownloadController extends Controller
 		$Download->id = 0;
 		$Download->content = '';
 		$Download->create_time = '';
+		$Download->location = '';
 
 		$this->assign('Download', $Download);
 

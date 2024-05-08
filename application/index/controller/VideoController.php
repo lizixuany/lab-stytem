@@ -34,6 +34,7 @@ class VideoController extends Controller
 		$Video->id = 0;
 		$Video->content = '';
 		$Video->create_time = '0';
+		$Video->location="";
 
 		$this->assign('Video', $Video);
 

@@ -26,8 +26,8 @@
 <div class="col-md-11 dropdown card" style="margin: 45px 100px 100px 220px;">
 {volist name="labs" id="_lab" key="key"}
   <h2><a class="text-decoration" id="{$_lab->getData('id')}">{$_lab->getData('name')}</a></h2>
-  <textarea style="width: 975px; height: 380px; padding: 15px;">{$_lab->getData('content')}</textarea>
-  <div style="margin: 25px 10px 0px 900px;">
+  <textarea style="width: 920px; height: 380px; padding: 15px;">{$_lab->getData('content')}</textarea>
+  <div style="margin: 25px 10px 0px 870px;">
     <a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $_lab->getData('id'))}">
       <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
     </a>

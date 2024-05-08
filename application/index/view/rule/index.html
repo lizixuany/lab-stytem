@@ -16,8 +16,8 @@
 <div class="col-md-11 dropdown card" style="margin: 45px 100px 100px 220px;">
     {volist name="rules" id="_rule" key="key"}
       <h3><a class="text-decoration" id="{$_rule->getData('id')}">{$_rule->getData('name')}</a></h2>
-      <textarea style="width: 975px; height: 600px; padding: 15px;">{$_rule->getData('content')}</textarea>
-      <div style="margin: 25px 10px 0px 900px;">
+      <textarea style="width: 920px; height: 600px; padding: 15px;">{$_rule->getData('content')}</textarea>
+      <div style="margin: 25px 10px 0px 870px;">
         <a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $_rule->getData('id'))}">
           <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
         </a>
