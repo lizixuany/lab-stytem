@@ -78,8 +78,8 @@ class VideoController extends Controller
         }
 
         // 新增数据
-        if (!$this->saveVideo($Video)) {
-            return $this->error('操作失败' . $Video->getError());
+        if ($this->saveVideo($Video)) {
+           
         }
 
         return $this->success('操作成功', url('index'));
@@ -122,9 +122,10 @@ class VideoController extends Controller
         // 写入要更新的数据
         $Video->content = Request::instance()->post('content');
 		$Video->create_time = Request::instance()->post('create_time');
+		$Video->location = $Video->location;
 
         // 更新或保存
-        return $Video->validate()->save();
+        return $Video->validate(true)->save();
     }
 
 	public function upload(){
@@ -144,19 +145,25 @@ class VideoController extends Controller
 				$Request = Request::instance();
 				$id = Request::instance()->param('id/d');
 
-				// 判断是否存在当前记录
-				if (is_null($Video = Video::get($id))) {
-					return $this->error('未找到ID为' . $id . '的记录');
-				}
-				$location = '/thinkphp5/public/Video/' . "$filename";				
-				$Video->location = $location;
+				if (0 !== $id) {
+					$Video = Video::get($id);
+				} else {
+					$Video = new Video; 
 
+					$Video->id = 0;
+					$Video->content = '';
+					$Video->create_time = '0';
+				}
+
+				$Video->location = '/thinkphp5/public/Video/' . "$filename";
+					
 				// 添加数据
 				if (!$Video->validate(true)->save()) {
 					return $this->error('数据添加错误：' . $Video->getError());
 				}
 		
-				return $this->success('操作成功');
+				$this->assign('Video', $Video);
+				return $this->fetch('edit');
 			}else{
 				// 上传失败获取错误信息
 				echo $file->getError();
