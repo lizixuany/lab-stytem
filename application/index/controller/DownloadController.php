@@ -78,9 +78,7 @@ class DownloadController extends Controller
         }
 
         // 新增数据
-        if (!$this->saveDownload($Download)) {
-            return $this->error('操作失败' . $Download->getError());
-        }
+        if ($this->saveDownload($Download)) {}
 
         return $this->success('操作成功', url('index'));
 	}
@@ -122,6 +120,7 @@ class DownloadController extends Controller
         // 写入要更新的数据
         $Download->content = Request::instance()->post('content');
 		$Download->create_time = Request::instance()->post('create_time');
+		$Download->location = $Download->location;
 
         // 更新或保存
         return $Download->validate()->save();
@@ -144,19 +143,25 @@ class DownloadController extends Controller
 				$Request = Request::instance();
 				$id = Request::instance()->param('id/d');
 
-				// 判断是否存在当前记录
-				if (is_null($Download = Download::get($id))) {
-					return $this->error('未找到ID为' . $id . '的记录');
+				if (0 !== $id) {
+					$Download = Download::get($id);
+				} else {
+					$Download = new Download; 
+
+					$Download->id = 0;
+					$Download->content = '';
+					$Download->create_time = '0';
 				}
-				$location = '/thinkphp5/public/Download/' . "$filename";
-				$Download->location = $location;
-		
+
+				$Download->location = '/thinkphp5/public/Download/' . "$filename";
+					
 				// 添加数据
 				if (!$Download->validate(true)->save()) {
 					return $this->error('数据添加错误：' . $Download->getError());
 				}
 		
-				return $this->success('操作成功');
+				$this->assign('Download', $Download);
+				return $this->fetch('edit');
 			}else{
 				// 上传失败获取错误信息
 				echo $file->getError();
