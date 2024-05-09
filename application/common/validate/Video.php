@@ -5,8 +5,8 @@ use think\Validate;
 class Notice extends Validate
 {
     protected $rule = [
-        'title' => 'require',
         'content'  => 'require',
+        'location' => 'require',
         'creat_time'  => 'require'     
     ];
 }
