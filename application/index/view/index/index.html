@@ -2,8 +2,10 @@
 {block name="content"}
 <div class="row">
     <div class="col-md-8">
-        <b style="font-size:20px;">新闻快讯</b>&nbsp;
-        <i style="text-align:right;"><a href="{:url('news/index2')}">MORE</a></i>
+        <div style=" display:flex; justify-content : space-between;">
+            <b style="font-size:20px;">新闻快讯</b>&nbsp;
+            <i style="text-align:right;"><a href="{:url('news/index2')}">>>MORE</a></i>
+        </div>
         <hr>
         <div class="row">
             <div class="col-md-6">
@@ -38,78 +40,131 @@
                 </div>       
             </div>
             <div class="col-md-6">
-                <ul>
-                    <?php
-                        $count = 0;
-                        foreach($newsList as $news):
+                <div id="mylist">
+                    <ul>
+                        <?php
+                            $count = 0;
+                            foreach($newsList as $news):
                             if($count >= 5) break;
-                    ?>
-                        <li><a href="<?php echo url('index/newsDetail',['id'=>$news['id']]);?>"><?php echo $news['title']; ?></a></li>
-                    <?php
-                        $count++;
-                        endforeach;
-                    ?>
-                </ul>
+                        ?>
+                        <p><span><?php echo $news['create_time']; ?></span>
+                        <a href="<?php echo url('index/newsDetail',['id'=>$news['id']]);?>">
+                            <?php 
+                                $title = $news['title'];
+                                echo mb_substr($title, 0, 16, 'utf-8');
+                                if(mb_strlen($title, 'utf-8') > 16) echo '...'; 
+                            ?>
+                        </a >
+                        </p >
+                        <?php
+                            $count++;
+                            endforeach;
+                        ?>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
     <div class="col-md-4">
-        <b style="font-size:20px;">公告通知</b>&nbsp;
-        <i style="text-align:right;"><a href="{:url('notice/index2')}">MORE</a></i>
+        <div style=" display:flex; justify-content : space-between;">
+            <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公告通知</b>&nbsp;
+            <i style="text-align:right;"><a href="{:url('notice/index2')}">>>MORE</a></i>
+        </div>
         <hr>
-        <ul>
-            <?php
-                $count = 0;
-                foreach($noticeList as $notice):
+        <div id="mylist">
+            <ul>
+                <?php
+                    $count = 0;
+                    foreach($noticeList as $notice):
                     if($count >= 5) break;
-            ?>
-                <li><a href="<?php echo url('index/noticeDetail',['id'=>$notice['id']]);?>"><?php echo $notice['title']; ?></a></li>
-            <?php
-                $count++;
-                endforeach;
-            ?>
-        </ul>
+                ?>
+                <p><span><?php echo $notice['create_time']; ?></span>
+                <a href="<?php echo url('index/noticeDetail',['id'=>$notice['id']]);?>">
+                    <?php 
+                        $title = $notice['title'];
+                        echo mb_substr($title, 0, 16, 'utf-8');
+                        if(mb_strlen($title, 'utf-8') > 16) echo '...'; 
+                    ?>
+                </a >
+                </p >
+                <?php
+                    $count++;
+                    endforeach;
+                ?>
+            </ul>
+        </div>
     </div>
 </div>
 <br><br>
 <div class="row">
     <div class="col-md-4">
-        <b style="font-size:20px;">资料下载</b>&nbsp;
-        <i style="text-align:right;"><a href="{:url('download/index2')}">MORE</a></i>
+        <div style=" display:flex; justify-content : space-between;">
+            <b style="font-size:20px;">资料下载</b>&nbsp;
+            <i style="text-align:right;"><a href="{:url('download/index2')}">>>MORE</a></i>
+        </div>
         <hr>
-        <ul>
-            <?php
-                $count = 0;
-                foreach($downloadList as $download):
-                    if($count >= 5) break;
-            ?>
-                <li><a href="<?php echo url('index/downloadDetail',['id'=>$download['id']]);?>"><?php echo $download['content']; ?></a></li>
-            <?php
-                $count++;
-                endforeach;
-            ?>
-        </ul>
+        <div id="mylist">
+            <ul>
+                <?php
+                    $count = 0;
+                    foreach($downloadList as $download):
+                        if($count >= 5) break;
+                ?>
+                <p><span><?php echo $download['create_time']; ?></span>
+                <a href="<?php echo url('index/downloadDetail',['id'=>$download['id']]);?>">
+                    <?php 
+                        $content = $download['content'];
+                        echo mb_substr($content, 0, 16, 'utf-8');
+                        if(mb_strlen($content, 'utf-8') > 16) echo '...'; 
+                    ?>
+                </a>
+                </p>
+                <?php
+                    $count++;
+                    endforeach;
+                ?>
+            </ul>
+        </div>
     </div>
     <div class="col-md-4">
-        <b style="font-size:20px;">失物招领</b>&nbsp;
-        <i style="text-align:right;"><a href="{:url('lost/index2')}">MORE</a></i>
+        <div style=" display:flex; justify-content : space-between;">
+            <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;失物招领</b>&nbsp;
+            <i style="text-align:right;"><a href="{:url('lost/index2')}">>>MORE</a></i>
+        </div>
         <hr>
-        <ul>
-            <?php
-                $count = 0;
-                foreach($lostList as $lost):
-                    if($count >= 5) break;
-            ?>
-                <li><a href="<?php echo url('index/lostDetail',['id'=>$lost['id']]);?>"><?php echo $lost['name']; ?></a></li>
-            <?php
-                $count++;
-                endforeach;
-            ?>
-        </ul>
+        <div id="mylist">
+            <ul>
+                <?php
+                    $count = 0;
+                    foreach($lostList as $lost):
+                        if($count >= 5) break;
+                ?>
+                <p>
+                    <span><?php echo $lost['create_time']; ?></span>
+                    <a href="<?php echo url('index/lostDetail',['id'=>$lost['id']]);?>">
+                        <?php 
+                            // 截取name字段的前10个字符
+                            $shortenedText = mb_substr($lost['name'], 0, 10, 'utf-8');
+                            // 如果原始字符串长度超过10个字符，则添加省略号
+                            if(mb_strlen($lost['name'], 'utf-8') > 10) {
+                                $shortenedText .= '...';
+                            }
+                            echo $shortenedText;
+                        ?> 在<?php echo $lost['place']; ?>被捡拾
+                    </a >
+                </p >
+                <?php
+                    $count++;
+                    endforeach;
+                ?>
+            </ul>
+        </div>
     </div>
     <div class="col-md-4">
-        <b style="font-size:20px;">实验场所</b>&nbsp;
-        <i style="text-align:right;"><a href="{:url('lab/index2')}">MORE</a></i>
+        <div style=" display:flex; justify-content : space-between;">
+            <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实验场所</b>&nbsp;
+            <i style="text-align:right;"><a href="{:url('lab/index2')}">>>MORE</a></i>
+        </div>
         <hr>
         <ul>
             <?php
@@ -117,7 +172,14 @@
                 foreach($labList as $lab):
                     if($count >= 5) break;
             ?>
-                <li><a href="<?php echo url('index/labDetail',['id'=>$lab['id']]);?>"><?php echo $lab['name']; ?></a></li>
+            <p><a href="<?php echo url('index/labDetail',['id'=>$lab['id']]);?>">
+                <?php 
+                        $name = $lab['name'];
+                        echo mb_substr($name, 0, 16, 'utf-8');
+                        if(mb_strlen($name, 'utf-8') > 16) echo '...'; 
+                ?>
+            </a>
+            </p>
             <?php
                 $count++;
                 endforeach;
