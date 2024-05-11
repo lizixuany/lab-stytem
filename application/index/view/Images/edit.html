@@ -1,0 +1,30 @@
+{extend name="edit"} 
+{block name="title"}
+{eq name="Images->id" value=""}添加{else /}编辑{/eq}
+{/block}
+{block name="content"}
+    {php}$action = request()->action() === 'add' ? 'save' : 'update';{/php}
+    <form action="{:url('Images/upload')}" enctype="multipart/form-data" method="post" style="margin: 100px 310px 0px 320px;">
+        <label for="route">上传图片:</label>
+        <input type="hidden" name="id" value="{$Images->getData('id')}" />
+        <input type="image" name="image"/>
+        <input type="submit"value="确定"/>
+        <textarea class="form-control" type="text" name="route" id="route" rows="3">{$Images->route}</textarea>
+    </form>
+    <form action="{:url($action)}" method="post" style="margin: 80px 180px 180px 420px;">
+        <div class="form-group">
+            <input type="hidden" name="id" value="{$Images->getData('id')}" />
+            <label for="route">路径</label>
+            <input type="text" name="route" id="route" value="{$Images->route}"/>
+        </div>
+        <div class="form-group">
+            <label for="show">图片展示</label>
+            <input type="text" name="show" id="show" value="{$Images->getData('show')}"/>
+        </div>    
+        <div class="form-group form-check">
+            <input type="radio" name="state" value="0" id="state0" {eq name="Images->getData('state')" value="0"}checked="checked"{/eq}/><label for="state0">未显示</label>
+            <input type="radio" name="state" value="1" id="state1" {eq name="Images->getData('state')" value="1"}checked="checked"{/eq}/><label for="state1">显示中</label>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+{/block}

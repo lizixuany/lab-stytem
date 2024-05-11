@@ -139,6 +139,9 @@
             font-size:17px;
             font-weight:blod;
         }
+
+        a:hover {text-decoration:none;}
+        a:active {text-decoration:none;}
     </style>
 </head>
 
@@ -192,18 +195,5 @@
     {/block}
     {block name="page"}
     {/block}
-    <br>
-    <br>
-    <div class="jumbotron text-center" style="margin-bottom:0;background-color:#990099;font-size:30px;">
-        <p>版权 © yunzhi.club</p>
-    </div>
-    <script>
-        $(document).ready(function(){
-            $(".nav-link").click(function(){
-                $(".nav-link").removeClass("active");
-                $(this).addClass("active");
-            });
-        });
-    </script>
 </body>
 </html>
