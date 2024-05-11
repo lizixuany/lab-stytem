@@ -8,7 +8,7 @@
 	<script src="/thinkphp5/public/static/js/jquery.slim.min.js"></script>
     <script src="/thinkphp5/public/static/js/bootstrap.bundle.min.js"></script>
     <script src="http://cdn.staticfile.net/jquery/2.1.1/jquery.min.js"></script>
-	<!-- <script src="http://cdn.staticfile.net/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+	<script src="http://cdn.staticfile.net/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
         .dropbtn {
             background-color: #990099;
@@ -82,15 +82,14 @@
         }
 
         ul {
-           list-style-type: none; 
+            list-style:none;
         }
 
         .test {
             margin: 60px 0px 0px -15px;
             padding: 0;
-            width: 15%;
+            width: 20%;
             background-color: #f1f1f1;
-            position: fixed;
             height: 100%;
             overflow: auto;
             text-align:center
@@ -133,7 +132,7 @@
             <nav class="navbar navbar-default" role="navigation">
                 <div class="container-fluid" style="background-color: #990099;">
                     <div class="navbar-header">
-                        <a class="navbar-brand" style="color:white;">天职师大</a>
+                        <a class="navbar-brand" style="color:white;" href="{:url('Home/index')}">天职师大</a>
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
@@ -169,12 +168,13 @@
             </nav>
         </div>
     </div>
+    <div style="margin: 55px -4px;">
+        <img src="/thinkphp5/public/image/biaotou.jpg" width="1178px" height="300px">
+    </div>
 
     {block name="content"}
     {/block}
     {block name="page"}
     {/block}
-
 </body>
 </html>
-
