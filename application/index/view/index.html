@@ -123,6 +123,22 @@
             margin-right: 0%;
             width: 950px;
         }
+
+        #mylist {
+            list-style-type:none; 
+            margin:0;
+            padding:0;
+        
+        }
+
+        #mylist p span {
+            float:right; 
+        }
+
+        .top-news {
+            font-size:17px;
+            font-weight:blod;
+        }
     </style>
 </head>
 
@@ -176,5 +192,18 @@
     {/block}
     {block name="page"}
     {/block}
+    <br>
+    <br>
+    <div class="jumbotron text-center" style="margin-bottom:0;background-color:#990099;font-size:30px;">
+        <p>版权 © yunzhi.club</p>
+    </div>
+    <script>
+        $(document).ready(function(){
+            $(".nav-link").click(function(){
+                $(".nav-link").removeClass("active");
+                $(this).addClass("active");
+            });
+        });
+    </script>
 </body>
 </html>
