@@ -43,21 +43,51 @@
                 <div id="mylist">
                     <ul>
                         <?php
-                            $count = 0;
-                            foreach($newsList as $news):
-                            if($count >= 5) break;
+                            $topNews = array(); // 存储状态为1的数据
+                            $normalNews = array(); // 存储状态不为1的数据
+            
+                            // 将状态为1的数据置顶
+                            foreach($newsList as $news) {
+                                if($news['state'] == 1) {
+                                    $topNews[] = $news;
+                                } else {
+                                    $normalNews[] = $news;
+                                }
+                            }
+            
+                            // 先显示状态为1的数据
+                            foreach($topNews as $news):
                         ?>
-                        <p><span><?php echo $news['create_time']; ?></span>
-                        <a href="<?php echo url('index/newsDetail',['id'=>$news['id']]);?>">
-                            <?php 
-                                $title = $news['title'];
-                                echo mb_substr($title, 0, 16, 'utf-8');
-                                if(mb_strlen($title, 'utf-8') > 16) echo '...'; 
-                            ?>
-                        </a >
+                        <p class="top-news"><span><?php echo $news['create_time']; ?></span>
+                            <a href="<?php echo url('index/newsDetail',['id'=>$news['id']]);?>">
+                                <?php 
+                                    $title = $news['title'];
+                                    echo mb_substr($title, 0, 16, 'utf-8');
+                                    if(mb_strlen($title, 'utf-8') > 16) echo '...'; 
+                                ?>
+                            </a>
                         </p >
                         <?php
-                            $count++;
+                            endforeach;
+                            
+                            //添加分割线
+                            if(!empty($topNews) && !empty($normalNews)) {
+                                echo '<hr>';
+                            }
+            
+                            // 再显示剩余的正常数据
+                            foreach($normalNews as $news):
+                        ?>
+                        <p><span><?php echo $news['create_time']; ?></span>
+                            <a href="<?php echo url('index/newsDetail',['id'=>$news['id']]);?>">
+                                <?php 
+                                    $title = $news['title'];
+                                    echo mb_substr($title, 0, 16, 'utf-8');
+                                    if(mb_strlen($title, 'utf-8') > 16) echo '...'; 
+                                ?>
+                            </a >
+                        </p >
+                        <?php
                             endforeach;
                         ?>
                     </ul>
@@ -76,7 +106,7 @@
                 <?php
                     $count = 0;
                     foreach($noticeList as $notice):
-                    if($count >= 5) break;
+                    if($count >= 6) break;
                 ?>
                 <p><span><?php echo $notice['create_time']; ?></span>
                 <a href="<?php echo url('index/noticeDetail',['id'=>$notice['id']]);?>">
@@ -108,7 +138,7 @@
                 <?php
                     $count = 0;
                     foreach($downloadList as $download):
-                        if($count >= 5) break;
+                        if($count >= 6) break;
                 ?>
                 <p><span><?php echo $download['create_time']; ?></span>
                 <a href="<?php echo url('index/downloadDetail',['id'=>$download['id']]);?>">
@@ -137,7 +167,7 @@
                 <?php
                     $count = 0;
                     foreach($lostList as $lost):
-                        if($count >= 5) break;
+                        if($count >= 6) break;
                 ?>
                 <p>
                     <span><?php echo $lost['create_time']; ?></span>
@@ -170,7 +200,7 @@
             <?php
                 $count = 0;
                 foreach($labList as $lab):
-                    if($count >= 5) break;
+                    if($count >= 6) break;
             ?>
             <p><a href="<?php echo url('index/labDetail',['id'=>$lab['id']]);?>">
                 <?php 
