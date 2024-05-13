@@ -2,11 +2,12 @@
 namespace app\common\validate;
 use think\Validate;
 
-class Download extends Validate
+class Teacher extends Validate
 {
     protected $rule = [
+        'name' => 'require',  
         'content'  => 'require',
-        'location' => 'requite',
-        'creat_time'  => 'require'     
+        'study' => 'require',
+        'success' => 'require'
     ];
 }

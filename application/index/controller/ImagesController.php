@@ -130,32 +130,41 @@ class ImagesController extends Controller
 
 		// 移动到框架应用根目录/public/image/ 目录下
 		if($file){
-			$info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'image');
+			$info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'image','');
 			
 			if($info){
 				// 成功上传后 获取上传信息
+				// a902d02fae5cdd89f86aacc71730ac15.png
 				$filename = $info->getFilename(); 
 
 				// 实例化请求信息
+				$Request = Request::instance();
 				$id = Request::instance()->param('id/d');
 
-				// 判断是否存在当前记录
-				if (is_null($Images = Images::get($id))) {
-					return $this->error('未找到ID为' . $id . '的记录');
+				if (0 !== $id) {
+					$Images = Images::get($id);
+				} else {
+					$Images = new Images; 
+
+					$Images->id = 0;
+					$Images->state = 0;
+
 				}
-				$show = '/thinkphp5/public/image/' . "$filename";
-				$Images->show = $show;
-		
+
+				$Images->route = '/thinkphp5/public/image/' . "$filename";
+					
 				// 添加数据
 				if (!$Images->validate(true)->save()) {
 					return $this->error('数据添加错误：' . $Images->getError());
 				}
 		
-				return $this->success('操作成功', url('Images/index'));
+				$this->assign('Images', $Images);
+				return $this->fetch('edit');
 			}else{
 				// 上传失败获取错误信息
 				echo $file->getError();
 			}
 		}
 	}
+
 }
