@@ -4,7 +4,7 @@
 {/block}
 {block name="content"}
 
-<div class="test" style="margin: -40px 10px 10px 0px;">
+<div class="test" style="margin: 10px 10px 10px 0px;">
   <div class="text-center" id="myhead">
     <h1>中心概况</h1><i>ZHONG XIN GAI KUANG</i>
   </div>&nbsp;
@@ -16,7 +16,7 @@
   </ul>
 </div>
 
-<form action="{:url('Centre/upload')}" enctype="multipart/form-data" method="post" style="margin: -280px -40px 120px 230px;">
+<form action="{:url('Centre/upload')}" enctype="multipart/form-data" method="post" style="margin: -280px 0px 0px 225px;">
   {volist name="centres" id="_centre" key="key"}
   <img src="{$_centre->getData('content')}" width="930" height="480">
   <input type="file" name="image"/>
