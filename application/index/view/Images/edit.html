@@ -19,7 +19,7 @@
         </div>
         <div class="form-group">
             <label for="show">图片展示</label>
-            <input type="text" name="show" id="show" value="{$Images->getData('show')}"/>
+            <img src="{$Images->getData('show')}" width="130" height="180">
         </div>    
         <div class="form-group form-check">
             <input type="radio" name="state" value="0" id="state0" {eq name="Images->getData('state')" value="0"}checked="checked"{/eq}/><label for="state0">未显示</label>
