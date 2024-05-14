@@ -19,9 +19,10 @@ class ImagesController extends Controller
 		}
 
 		$imageses = Images::paginate(5);
+
 		$this->assign('imageses', $imageses);
 
-		return $this->fetch();
+        return $this->fetch();
     }
 
 	public function add() 
@@ -32,7 +33,8 @@ class ImagesController extends Controller
 		// 设置默认值
 		$Images->id = 0;
 		$Images->route = '';
-		$Images->show = '';
+		$Images->title = '';
+		$Images->content = '';
         $Images->state = '0';
 
 		$this->assign('Images', $Images);
@@ -116,8 +118,9 @@ class ImagesController extends Controller
     {
         // 写入要更新的数据
         $Images->route = Request::instance()->post('route');
-		$Images->show = Request::instance()->post('show');
 		$Images->create_time = Request::instance()->post('create_time');
+		$Images->title = Request::instance()->post('title');
+		$Images->content = Request::instance()->post('content');
 		$Images->state = Request::instance()->post('state');
 
         // 更新或保存
@@ -147,6 +150,8 @@ class ImagesController extends Controller
 					$Images = new Images; 
 
 					$Images->id = 0;
+					$Images->title = '';
+					$Images->content = '';
 					$Images->state = 0;
 
 				}

@@ -7,7 +7,7 @@
     <div class="col-md-8">
         <div style=" display:flex; justify-content : space-between;">
             <b style="font-size:20px;">新闻快讯</b>&nbsp;
-            <i style="text-align:right;"><a href="{:url('news/index')}">>>MORE</a></i>
+            <i style="text-align:right;"><a href="{:url('news/index2')}">>>MORE</a></i>
         </div>
         <hr>
         <div class="row">
@@ -18,7 +18,10 @@
                         <li data-target="#demo" data-slide-to="0" class="active"></li>
                         <li data-target="#demo" data-slide-to="1"></li>
                         <li data-target="#demo" data-slide-to="2"></li>
-                    </ol>   
+                        <!-- 添加更多的指示器 -->
+                        <li data-target="#demo" data-slide-to="3"></li>
+                        <li data-target="#demo" data-slide-to="4"></li>
+                    </ol>
                     <!-- 轮播（Carousel）项目 -->
                     <div class="carousel-inner">
                         <div class="item active">
@@ -30,18 +33,25 @@
                         <div class="item">
                             <img src="/thinkphp5/public/image/xinwen3.jpg" alt="Third slide">
                         </div>
+                        <!-- 添加更多的图片项 -->
+                        <div class="item">
+                            <img src="#" alt="Fourth slide">
+                        </div>
+                        <div class="item">
+                            <img src="#" alt="Fifth slide">
+                        </div>
                     </div>
                     <!-- 轮播（Carousel）导航 -->
-                    <a class="left carousel-control" href="#demo" role="button" data-slide="prev">
+                    <a class="left carousel-control" href=" " role="button" data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
-                    </a>
+                    </a >
                     <a class="right carousel-control" href="#demo" role="button" data-slide="next">
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
-                    </a>
-                </div> 
-                <a href="{:url('images/index')}">修改图片</a>      
+                    </a >
+                </div>
+                <a href="{:url('Images/index')}">修改图片</a>
             </div>
             <div class="col-md-6">
                 <div id="mylist">
@@ -62,7 +72,6 @@
                             // 先显示状态为1的数据
                             foreach($topNews as $news):
                         ?>
-<<<<<<< HEAD
                         <p class="top-news"><span><?php echo $news['create_time']; ?></span>
                             <a href="<?php echo url('index/newsDetail',['id'=>$news['id']]);?>">
                                 <?php 
@@ -91,17 +100,6 @@
                                     if(mb_strlen($title, 'utf-8') > 16) echo '...'; 
                                 ?>
                             </a >
-=======
-                        <p>
-                        <a href="<?php echo url('index/newsDetail',['id'=>$news['id']]);?>">
-                            <?php 
-                                $title = $news['title'];
-                                echo mb_substr($title, 0, 16, 'utf-8');
-                                if(mb_strlen($title, 'utf-8') > 16) echo '...'; 
-                            ?>
-                        </a >
-                        <span><?php echo $news['create_time']; ?></span>
->>>>>>> c4a5131eede9e4f10426717fda9fc46db9424100
                         </p >
                         <?php
                             endforeach;
@@ -114,7 +112,7 @@
     <div class="col-md-4">
         <div style=" display:flex; justify-content : space-between;">
             <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公告通知</b>&nbsp;
-            <i style="text-align:right;"><a href="{:url('notice/index')}">>>MORE</a></i>
+            <i style="text-align:right;"><a href="{:url('notice/index2')}">>>MORE</a></i>
         </div>
         <hr>
         <div id="mylist">
@@ -124,7 +122,7 @@
                     foreach($noticeList as $notice):
                     if($count >= 6) break;
                 ?>
-                <p>
+                <p><span><?php echo $notice['create_time']; ?></span>
                 <a href="<?php echo url('index/noticeDetail',['id'=>$notice['id']]);?>">
                     <?php 
                         $title = $notice['title'];
@@ -132,7 +130,6 @@
                         if(mb_strlen($title, 'utf-8') > 16) echo '...'; 
                     ?>
                 </a >
-                <span><?php echo $notice['create_time']; ?></span>
                 </p >
                 <?php
                     $count++;
@@ -147,7 +144,7 @@
     <div class="col-md-4">
         <div style=" display:flex; justify-content : space-between;">
             <b style="font-size:20px;">资料下载</b>&nbsp;
-            <i style="text-align:right;"><a href="{:url('download/index')}">>>MORE</a></i>
+            <i style="text-align:right;"><a href="{:url('download/index2')}">>>MORE</a></i>
         </div>
         <hr>
         <div id="mylist">
@@ -157,7 +154,7 @@
                     foreach($downloadList as $download):
                         if($count >= 6) break;
                 ?>
-                <p>
+                <p><span><?php echo $download['create_time']; ?></span>
                 <a href="<?php echo url('index/downloadDetail',['id'=>$download['id']]);?>">
                     <?php 
                         $content = $download['content'];
@@ -165,7 +162,6 @@
                         if(mb_strlen($content, 'utf-8') > 16) echo '...'; 
                     ?>
                 </a>
-                <span><?php echo $download['create_time']; ?></span>
                 </p>
                 <?php
                     $count++;
@@ -177,7 +173,7 @@
     <div class="col-md-4">
         <div style=" display:flex; justify-content : space-between;">
             <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;失物招领</b>&nbsp;
-            <i style="text-align:right;"><a href="{:url('lost/index')}">>>MORE</a></i>
+            <i style="text-align:right;"><a href="{:url('lost/index2')}">>>MORE</a></i>
         </div>
         <hr>
         <div id="mylist">
@@ -188,6 +184,7 @@
                         if($count >= 6) break;
                 ?>
                 <p>
+                    <span><?php echo $lost['create_time']; ?></span>
                     <a href="<?php echo url('index/lostDetail',['id'=>$lost['id']]);?>">
                         <?php 
                             // 截取name字段的前10个字符
@@ -199,7 +196,6 @@
                             echo $shortenedText;
                         ?> 在<?php echo $lost['place']; ?>被捡拾
                     </a >
-                    <span><?php echo $lost['create_time']; ?></span>
                 </p >
                 <?php
                     $count++;
@@ -211,7 +207,7 @@
     <div class="col-md-4">
         <div style=" display:flex; justify-content : space-between;">
             <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实验场所</b>&nbsp;
-            <i style="text-align:right;"><a href="{:url('lab/index')}">>>MORE</a></i>
+            <i style="text-align:right;"><a href="{:url('lab/index2')}">>>MORE</a></i>
         </div>
         <hr>
         <ul>
@@ -234,5 +230,5 @@
             ?>
         </ul>
     </div>
-</div> 
-{/block}       
+</div>
+{/block}

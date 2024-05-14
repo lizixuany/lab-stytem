@@ -1,6 +1,7 @@
 <?php
 namespace app\index\controller;
 use think\Controller;
+use think\DB;
 use app\common\model\Index;
 use app\common\model\News;
 use app\common\model\Notice;
@@ -8,8 +9,10 @@ use app\common\model\Download;
 use app\common\model\Lost;
 use app\common\model\Lab;
 use app\common\model\Video;
+use app\common\model\Images;
 use app\common\model\Teacher;
 use app\common\index\LostController;
+use app\common\index\ImagesController;
 
 class IndexController extends Controller
 {
@@ -54,6 +57,23 @@ class IndexController extends Controller
 
         //传递给首页模板
         $this->assign('labList',$labList);
+
+        //轮播图片
+        //获取数据
+        $images= new Images();
+        $imagesList = $images->getList();
+
+        //传递给首页模板
+        $this->assign('imagesList',$imagesList);
+
+        //轮播图片
+        // 实例化F
+		$Images = new Images;
+
+        // 获取状态为1的图片数据
+        $imageShows = Images::where('state', 1)->select();
+
+        return view('index',['imageShows' => $imageShows]);
 
         //渲染首页模板
         return $this->fetch();
