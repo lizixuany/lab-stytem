@@ -1,7 +1,6 @@
 <?php
 namespace app\index\controller;
 use think\Controller;
-use think\DB;
 use app\common\model\Index;
 use app\common\model\News;
 use app\common\model\Notice;
@@ -57,14 +56,6 @@ class IndexController extends Controller
 
         //传递给首页模板
         $this->assign('labList',$labList);
-
-        //轮播图片
-        //获取数据
-        $images= new Images();
-        $imagesList = $images->getList();
-
-        //传递给首页模板
-        $this->assign('imagesList',$imagesList);
 
         //轮播图片
         // 实例化F
@@ -158,5 +149,13 @@ class IndexController extends Controller
 
         //渲染新闻详情页面
         return $this->fetch('teacher_detail',['teacherDetail' => $teacherDetail]);
+    }
+
+    public function imagesDetail($id){
+        //根据中心师资ID从数据库获取新闻数据详情
+        $imagesDetail = Images::get($id);
+
+        //渲染新闻详情页面
+        return $this->fetch('images_detail',['imagesDetail' => $imagesDetail]);
     }
 }
