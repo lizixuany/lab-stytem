@@ -19,15 +19,32 @@ class IndexController extends Controller
     {  
         //新闻快讯
         //获取数据
-        $news= new News();
+        $news = new News();
         $newsList = $news->getList();
 
         //传递给首页模板
         $this->assign('newsList',$newsList);
 
+        //主要新闻的置顶
+        $topNews = array(); // 存储状态为1的数据
+        $normalNews = array(); // 存储状态不为1的数据
+            
+        // 将状态为1的数据置顶
+        foreach($newsList as $news) {
+            if($news['state'] == 1) {
+                $topNews[] = $news;
+            } else {
+                $normalNews[] = $news;
+            }
+        }
+        
+        //将数据传递给首页模板
+        $this->assign('topNews',$topNews);
+        $this->assign('normalNews',$normalNews);
+
         //公告通知
         //获取数据
-        $notice= new Notice();
+        $notice = new Notice();
         $noticeList = $notice->getList();
 
         //传递给首页模板
@@ -35,7 +52,7 @@ class IndexController extends Controller
 
         //资料下载
         //获取数据
-        $download= new Download();
+        $download = new Download();
         $downloadList = $download->getList();
 
         //传递给首页模板
@@ -43,7 +60,7 @@ class IndexController extends Controller
 
         //失物招领
         //获取数据
-        $lost= new Lost();
+        $lost = new Lost();
         $lostList = $lost->getList();
 
         //传递给首页模板
@@ -51,7 +68,7 @@ class IndexController extends Controller
 
         //专业实验场所
         //获取数据
-        $lab= new Lab();
+        $lab = new Lab();
         $labList = $lab->getList();
 
         //传递给首页模板
