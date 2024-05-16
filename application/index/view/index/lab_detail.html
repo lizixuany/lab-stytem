@@ -3,15 +3,50 @@
 <div class="row">
     <div class="col-sm-2">
         <div class="text-center" id="myhead">
-            <h1>实验场所</h1><i>SHI YAN CHANG SUO</i>
+            <h1>
+                实验场所
+            </h1>
+            <i>
+                SHI YAN CHANG SUO
+            </i>
         </div>
     </div>
     <div class="col-sm-10">
         <div style="text-align: right;">
-            <a href="{:url('lab/index2')}">返回实验场所</a>
+            <a href="{:url('lab/index2')}">
+                返回实验场所
+            </a>
         </div>
-        <h3><a><?php echo $labDetail['name']; ?></a></h3>
-        <textarea style="width: 975px; height: 380px; padding: 15px;"><?php echo $labDetail['content']; ?></textarea>
+        <h3>
+            <a>
+                <?php echo $labDetail['name']; ?>
+            </a>
+        </h3>
+        <textarea style="width: 975px; height: 380px; padding: 15px;">
+            <?php echo $labDetail['content']; ?>
+        </textarea>
+        <br>
+        <div style="text-align: left;">
+            <?php
+                if(isset($previousName)):
+            ?>
+                <a href="<?php echo url('index/labDetail',['id'=>$previousLab['id']]);?>">
+                    上一条：<?php echo $previousName; ?>
+                </a>
+            <?php
+                endif;
+            ?>
+            <br>
+            <?php
+                if(isset($nextName)):
+            ?>
+                <a href="<?php echo url('index/labDetail',['id'=>$nextLab['id']]);?>">
+                    下一条：<?php echo $nextName; ?>
+                </a>
+            <?php
+                endif;
+            ?>
+        </div>
     </div>
 </div>
 {/block}

@@ -3,16 +3,47 @@
 <div class="row">
     <div class="col-sm-2">
         <div class="text-center" id="myhead">
-            <h1>失物招领</h1><i>SHI WU ZHAO LING</i>
+            <h1>
+                失物招领
+            </h1>
+            <i>
+                SHI WU ZHAO LING
+            </i>
         </div>
     </div>
     <div class="col-sm-10">
         <div style="text-align: right;">
-            <a href="{:url('lost/index2')}">返回失物招领</a>
+            <a href="{:url('lost/index2')}">
+                返回失物招领
+            </a>
         </div>
         <hr>
-        <p style="font-size:18px; text-indent:2em;"><?php echo $lostDetail['name']; ?>在<?php echo $lostDetail['place']; ?>于<?php echo $lostDetail['create_time']; ?>被捡到，
-            现放在<?php echo $lostDetail['location']; ?>,请丢失同学看到后快来认领。联系电话：15233839679。</p>
+        <p style="font-size:18px; text-indent:2em;">
+            <?php echo $lostDetail['name']; ?>在<?php echo $lostDetail['place']; ?>于<?php echo $lostDetail['create_time']; ?>被捡到，
+            现放在<?php echo $lostDetail['location']; ?>,请丢失同学看到后快来认领。联系电话：15233839679。
+        </p>
+        <br>
+        <div style="text-align: left;">
+            <?php
+                if(isset($previousName)):
+            ?>
+                <a href="<?php echo url('index/lostDetail',['id'=>$previousLost['id']]);?>">
+                    上一条：<?php echo $previousName; ?>
+                </a>
+            <?php
+                endif;
+            ?>
+            <br>
+            <?php
+                if(isset($nextName)):
+            ?>
+                <a href="<?php echo url('index/lostDetail',['id'=>$nextLost['id']]);?>">
+                    下一条：<?php echo $nextName; ?>
+                </a>
+            <?php
+                endif;
+            ?>
+        </div>
     </div>
 </div>
 {/block}

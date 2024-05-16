@@ -7,6 +7,7 @@ class News extends Validate
     protected $rule = [
         'title' => 'require',
         'content'  => 'require',
-        'creat_time'  => 'require'     
+        'creat_time'  => 'require'
+        'writer'  => 'require'
     ];
 }

@@ -35,6 +35,7 @@ class NewsController extends Controller
 		$News->title = '';
 		$News->content = '';
 		$News->create_time = '0';
+		$News->writer = '0';
 
 		$this->assign('News', $News);
 
@@ -123,6 +124,7 @@ class NewsController extends Controller
 		$News->title = Request::instance()->post('title');
         $News->content = Request::instance()->post('content');
 		$News->create_time = Request::instance()->post('create_time');
+		$News->writer = Request::instance()->post('writer');
 
         // 更新或保存
         return $News->validate()->save();

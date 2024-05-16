@@ -3,15 +3,51 @@
 <div class="row">
     <div class="col-sm-2">
         <div class="text-center" id="myhead">
-            <h1>资料下载</h1><i>ZI LIAO XIOA ZAI</i>
+            <h1>
+                资料下载
+            </h1>
+            <i>
+                ZI LIAO XIOA ZAI
+            </i>
         </div>
     </div>
     <div class="col-sm-10">
         <div style="text-align: right;">
-            <a href="{:url('download/index2')}">返回资料下载</a>
+            <a href="{:url('download/index2')}">
+                返回资料下载
+            </a>
         </div>
-        <p style="font-size:18px"><?php echo $downloadDetail['content']; ?></p>
-        <i><a href="<?php echo $downloadDetail['location']; ?>">点击此处下载</a></i>
+        <p style="font-size:18px">
+            <?php echo $downloadDetail['content']; ?>
+        </p>
+        <i>
+            <a href="<?php echo $downloadDetail['location']; ?>">
+                点击此处下载
+            </a>
+        </i>
+        <br>
+        <br>
+        <div style="text-align: left;">
+            <?php
+                if(isset($previousContent)):
+            ?>
+                <a href="<?php echo url('index/downloadDetail',['id'=>$previousDownload['id']]);?>">
+                    上一条：<?php echo $previousContent; ?>
+                </a>
+            <?php
+                endif;
+            ?>
+            <br>
+            <?php
+                if(isset($nextContent)):
+            ?>
+                <a href="<?php echo url('index/downloadDetail',['id'=>$nextDownload['id']]);?>">
+                    下一条：<?php echo $nextContent; ?>
+                </a>
+            <?php
+                endif;
+            ?>
+        </div>
     </div>
 </div>
 {/block}
