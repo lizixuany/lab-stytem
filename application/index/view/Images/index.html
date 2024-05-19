@@ -1,0 +1,62 @@
+{extend name="index"/}
+{block name="title"}
+图片修改
+{/block}
+{block name="content"}
+
+    <div class="test" style="margin: -40px 10px 10px 0px;">
+        <div class="text-center" id="myhead">
+            <h1>图片修改</h1><i>TU PIAN XIU GAI</i>
+        </div>&nbsp;
+    </div>
+    <div class="row content" style="margin: -120px -35px 0px 230px;">
+        <div class="col-md-12">
+            <hr />
+            <div class="row">
+                <div class="col-md-8">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            <label class="sr-only" for="title">关键字</label>
+                            <input name="title" type="text" class="form-control" placeholder="关键字..." value={:input('get.title')}>
+                        </div>
+                        <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
+                    </form>
+                </div>
+                <div class="col-md-4 text-right">
+                    <a href="{:url('add')}" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;增加</a>
+                </div>
+            </div>
+            <hr />
+            <table class="table table-hover table-bordered">
+                <tr class="info">
+                    <th>序号</th>
+                    <th>图片展示</th>
+                    <th>标题</th>
+                    <th>内容</th>
+                    <th>状态</th>
+                    <th>发布时间</th>
+                    <th>操作</th>
+                </tr>
+                {volist name="imageses" id="_images" key="key"}
+                <tr>
+                    <td>{$key}</td>
+                    <td><img src="{$_images->getData('route')}" width="150px" height="100px"></td>
+                    <td>{$_images->getData('title')}
+                    <td>{$_images->getData('content')}
+                    <td>{eq name="_images->getData('state')" value='0'}未显示{else /}显示中{/eq}</td>
+                    <td>{$_images->getData('create_time')}</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $_images->getData('id'))}">
+                            <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
+                        </a>
+                        <a class="btn btn-danger btn-sm" href="{:url('delete?id=' . $_images->getData('id'))}">
+                            <i class="glyphicon glyphicon-trash"></i>&nbsp;删除
+                        </a> 
+                    </td>
+                </tr>
+                {/volist}
+            </table>
+{/block}
+{block name="page"}
+    {$imageses->render()}
+{/block}

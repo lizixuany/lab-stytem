@@ -3,7 +3,7 @@ namespace app\index\controller;     // 该文件的位于application\index\contr
 
 use think\Controller;               // 用于与V层进行数据传递
 use think\Request;                  // 引用Request
-
+use think\Db;
 use app\common\model\Teacher;       // 教师模型
 
 /**
@@ -15,33 +15,21 @@ class TeacherController extends Controller
     {
         try {     
         // 获取查询信息
-        $name = input('get.name');
-        // 获取查询信息
-        $name = Request::instance()->get('name');
+		$name = Request::instance()->get('name');
 
-        $pageSize = 5; // 每页显示5条数据
+		// 实例化F
+		$Teacher = new Teacher;
 
-        // 实例化Teacher
-        $Teacher = new Teacher; 
+        $Teacher->where('')->order('role desc');
+		// 定制查询信息
+		if (!empty($name)) {
+			$Teacher->where('name', 'like', '%' . $name . '%')->order('role desc');
+		}
 
-        // 打印$Teacher 至控制台
-        trace($Teacher, 'debug');
-
-        // 按条件查询数据并调用分页
-        $teachers = $Teacher->where('name', 'like', '%' . $name . '%')->paginate($pageSize, false, [
-        'query'=>[
-            'name' => $name,
-            ],
-        ]);
-
-        // 向V层传数据
+        $teachers = Teacher::paginate(5);
+        
         $this->assign('teachers', $teachers);
-
-        // 取回打包后的数据
-        $htmls = $this->fetch();
-
-        // 将数据返回给用户
-        return $htmls;
+		return $this->fetch();
 
         // 获取到ThinkPHP的内置异常时，直接向上抛出，交给ThinkPHP处理
         } catch (\think\Exception\HttpResponseException $e) {
@@ -109,6 +97,7 @@ class TeacherController extends Controller
         // 设置默认值
         $Teacher->id = 0;
         $Teacher->name = '';
+        $Teacher->role = 0;
         $Teacher->content = '';
         $Teacher->study = '';
         $Teacher->success = '';
@@ -243,6 +232,7 @@ class TeacherController extends Controller
     {
         // 写入要更新的数据
         $Teacher->name = Request::instance()->post('name');
+        $Teacher->role = Request::instance()->post('role');
         $Teacher->content = Request::instance()->post('content');
         $Teacher->study = Request::instance()->post('study');
         $Teacher->success = Request::instance()->post('success');
@@ -254,8 +244,6 @@ class TeacherController extends Controller
     public function index2(){
         $pageSize = 5; //每页显示5条数据
 
-
-        //中心师资
         //获取数据
         $teacher = new Teacher();
         $teacherList = $teacher->getList();

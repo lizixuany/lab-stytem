@@ -2,11 +2,11 @@
 namespace app\common\validate;
 use think\Validate;
 
-class Notice extends Validate
+class Video extends Validate
 {
     protected $rule = [
         'content'  => 'require',
         'location' => 'require',
-        'creat_time'  => 'require'     
+        'create_time'  => 'require'     
     ];
 }

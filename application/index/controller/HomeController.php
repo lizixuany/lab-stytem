@@ -9,7 +9,9 @@ use app\common\model\Lost;
 use app\common\model\Lab;
 use app\common\model\Video;
 use app\common\model\Teacher;
+use app\common\model\Images;
 use app\common\index\LostController;
+use app\common\index\ImagesController;
 
 class HomeController extends Controller
 {
@@ -54,6 +56,15 @@ class HomeController extends Controller
 
         //传递给首页模板
         $this->assign('labList',$labList);
+
+        //轮播图片
+        // 实例化F
+		$Images = new Images;
+
+        // 获取状态为1的图片数据
+        $imageShows = Images::where('state', 1)->select();
+
+        return view('index',['imageShows' => $imageShows]);
 
         //渲染首页模板
         return $this->fetch();

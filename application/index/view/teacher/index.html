@@ -38,6 +38,7 @@
             <tr class="info">
                 <th>序号</th>
                 <th>姓名</th>
+                <th>职位</th>
                 <th>简介</th>
                 <th>研究方向</th>
                 <th>成就</th>
@@ -45,8 +46,13 @@
             </tr>
             {volist name="teachers" id="_teacher" key="key"}
             <tr>
-                <td>{$key}</td>
+                <td>{$key}</td>             
                 <td>{$_teacher->getData('name')}</td>
+                <td>
+                    {eq name="_teacher->getData('role')" value='0'}讲师{/eq}
+                    {eq name="_teacher->getData('role')" value='1'}副主任{/eq}
+                    {eq name="_teacher->getData('role')" value='2'}主任{/eq}
+                </td>
                 <td>{$_teacher->getData('content')}</td>
                 <td>{$_teacher->getData('study')}</td>
                 <td>{$_teacher->getData('success')}</td>

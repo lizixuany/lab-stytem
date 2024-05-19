@@ -5,7 +5,8 @@ use think\Validate;
 class Teacher extends Validate
 {
     protected $rule = [
-        'name' => 'require',  
+        'name' => 'require', 
+        'role' => 'require', 
         'content'  => 'require',
         'study' => 'require',
         'success' => 'require'

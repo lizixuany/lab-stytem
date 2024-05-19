@@ -8,8 +8,10 @@ use app\common\model\Download;
 use app\common\model\Lost;
 use app\common\model\Lab;
 use app\common\model\Video;
+use app\common\model\Images;
 use app\common\model\Teacher;
 use app\common\index\LostController;
+use app\common\index\ImagesController;
 
 class IndexController extends Controller
 {
@@ -54,6 +56,15 @@ class IndexController extends Controller
 
         //传递给首页模板
         $this->assign('labList',$labList);
+
+        //轮播图片
+        // 实例化F
+		$Images = new Images;
+
+        // 获取状态为1的图片数据
+        $imageShows = Images::where('state', 1)->select();
+
+        return view('index',['imageShows' => $imageShows]);
 
         //渲染首页模板
         return $this->fetch();
@@ -138,5 +149,13 @@ class IndexController extends Controller
 
         //渲染新闻详情页面
         return $this->fetch('teacher_detail',['teacherDetail' => $teacherDetail]);
+    }
+
+    public function imagesDetail($id){
+        //根据中心师资ID从数据库获取新闻数据详情
+        $imagesDetail = Images::get($id);
+
+        //渲染新闻详情页面
+        return $this->fetch('images_detail',['imagesDetail' => $imagesDetail]);
     }
 }

@@ -1,0 +1,18 @@
+{extend name="index"}
+{block name="content"}
+<div class="row">
+    <div class="col-sm-2">
+        <div class="text-center" id="myhead">
+            <h1>失物招领</h1><i>SHI WU ZHAO LING</i>
+        </div>
+    </div>
+    <div class="col-sm-10">
+        <div style="text-align: right;">
+            <a href="{:url('lost/index')}">返回失物招领</a>
+        </div>
+        <hr>
+        <p style="font-size:18px; text-indent:2em;"><?php echo $lostDetail['name']; ?>在<?php echo $lostDetail['place']; ?>于<?php echo $lostDetail['create_time']; ?>被捡到，
+            现放在<?php echo $lostDetail['location']; ?>,请丢失同学看到后快来认领。联系电话：15233839679。</p>
+    </div>
+</div>
+{/block}
