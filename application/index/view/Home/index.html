@@ -23,7 +23,7 @@
                     <div class="carousel-inner">
                         <?php foreach($imageShows as $key => $imageShow): ?>
                             <div class="item <?php echo $key == 0 ? 'active' : ''; ?>">
-                                <a href="#">
+                                <a href="<?php echo url('index/imagesDetail',['id'=>$imageShow['id']]);?>">
                                     <img src="<?php echo $imageShow['route']; ?>" alt="Slide <?php echo $key + 1; ?>" 
                                     style="width:100%;height:250px;object-fit:cover;">
                                 </a>

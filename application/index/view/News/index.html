@@ -15,8 +15,8 @@
             <div class="col-md-8">
                 <form class="form-inline">
                     <div class="form-group">
-                        <label class="sr-only" for="content">关键字</label>
-                        <input name="content" type="text" class="form-control" placeholder="关键字..." value={:input('get.content')}>
+                        <label class="sr-only" for="title">关键字</label>
+                        <input name="title" type="text" class="form-control" placeholder="关键字..." value={:input('get.title')}>
                     </div>
                     <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon-search"></i>&nbsp;查询</button>
                 </form>
@@ -30,7 +30,9 @@
             <tr class="info">
                 <th>序号</th>
                 <th>标题</th>
-                <th>内容</th>
+                <th>内容1</th>
+                <th>内容2</th>
+                <th>内容3</th>
                 <th>发布时间</th>
                 <th>操作</th>
             </tr>
@@ -38,7 +40,9 @@
             <tr>
                 <td>{$key}</td>
                 <td>{$_news->getData('title')}</td>
-                <td>{$_news->getData('content')}</td>
+                <td>{$_news->getData('content1')}</td>
+                <td>{$_news->getData('content2')}</td>
+                <td>{$_news->getData('content3')}</td>
                 <td>{$_news->getData('create_time')}</td>
                 <td>                          
                     <a class="btn btn-sm btn-primary" href="{:url('edit?id=' . $_news->getData('id'))}">
