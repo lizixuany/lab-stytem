@@ -4,7 +4,10 @@
 {/block}
 {block name="content"}
 
-<div class="test" style="margin: 60px 0px 0px -8px;">
+<div class="test" style="margin: 10px 10px 10px 0px;">
+  <div class="text-center" id="myhead">
+    <h1>中心概况</h1><i>ZHONG XIN GAI KUANG</i>
+  </div>&nbsp;
   <ul>
     <li><a :hover:not href="{:url('Introduce/index')}">中心简介</a></li>
     <li><a :hover:not href="{:url('Teacher/index')}">中心师资</a></li>
@@ -13,7 +16,7 @@
   </ul>
 </div>
 
-<form action="{:url('Centre/upload')}" enctype="multipart/form-data" method="post" style="margin: 100px 0px 0px 240px;">
+<form action="{:url('Centre/upload')}" enctype="multipart/form-data" method="post" style="margin: -280px 0px 0px 225px;">
   {volist name="centres" id="_centre" key="key"}
   <img src="{$_centre->getData('content')}" width="930" height="480">
   <input type="file" name="image"/>
@@ -22,4 +25,4 @@
   {/volist}
 </form>
 
-    {/block}
+{/block}

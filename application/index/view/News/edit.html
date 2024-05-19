@@ -4,6 +4,17 @@
 {/block}
 {block name="content"}
     {php}$action = request()->action() === 'add' ? 'save' : 'update';{/php}
+    <form action="{:url('News/upload')}" enctype="multipart/form-data" method="post" style="margin: 100px 310px 0px 320px;">
+        <label for="image1">上传图片1:</label>
+        <input type="hidden" name="id" value="{$News->getData('id')}" />
+        <input type="file" name="image1"/>
+        <input type="submit"value="确定"/>
+        <br>
+        <label for="route">上传图片2:</label>
+        <input type="hidden" name="id" value="{$News->getData('id')}" />
+        <input type="file" name="image2"/>
+        <input type="submit"value="确定"/>
+    </form>
     <form action="{:url($action)}" method="post" style="margin: 80px 310px 80px 320px;">
         <div class="form-group">
             <input type="hidden" name="id" value="{$News->getData('id')}" />
@@ -12,8 +23,26 @@
         </div>
         <div class="form-group">
             <input type="hidden" name="id" value="{$News->getData('id')}" />
-            <label for="content">内容：</label>
-            <textarea class="form-control" type="text" name="content" id="content" rows="3">{$News->content}</textarea>           
+            <label for="content1">内容1：</label>
+            <textarea class="form-control" type="text" name="content1" id="content1" rows="3">{$News->content1}</textarea>           
+        </div>
+        <div class="form-group">
+            <input type="hidden" name="id" value="{$News->getData('id')}" />
+            <label for="content2">内容2：</label>
+            <textarea class="form-control" type="text" name="content2" id="content2" rows="3">{$News->content2}</textarea>           
+        </div>
+        <div class="form-group">
+            <input type="hidden" name="id" value="{$News->getData('id')}" />
+            <label for="content3">内容3：</label>
+            <textarea class="form-control" type="text" name="content3" id="content3" rows="3">{$News->content3}</textarea>           
+        </div>
+        <div class="form-group">
+            <label for="image1">图片展示1</label>
+            <img src="{$News->getData('image1')}" width="300px">
+        </div>
+        <div class="form-group">
+            <label for="image2">图片展示2</label>
+            <img src="{$News->getData('image2')}" width="300px">
         </div>
         <div class="form-group">
             <label for="create_time">时间:</label>

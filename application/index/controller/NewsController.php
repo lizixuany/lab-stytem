@@ -9,14 +9,14 @@ class NewsController extends Controller
 	public function index()
 	{    
 		// 获取查询信息
-		$content = Request::instance()->get('content');
+		$title = Request::instance()->get('title');
 
 		// 实例化F
 		$News = new News;
 
 		// 定制查询信息
-		if (!empty($content)) {
-			$News->where('content', 'like', '%' . $content . '%');
+		if (!empty($title)) {
+			$News->where('title', 'like', '%' . $title . '%');
 		}
 
 		$newses = News::paginate(5);
@@ -33,8 +33,13 @@ class NewsController extends Controller
 		// 设置默认值
 		$News->id = 0;
 		$News->title = '';
-		$News->content = '';
+		$News->content1 = '';
+		$News->content2 = '';
+		$News->content3 = '';
+		$News->image1 = '';
+		$News->image2 = '';
 		$News->create_time = '0';
+		$News->writer = '0';
 
 		$this->assign('News', $News);
 
@@ -121,8 +126,13 @@ class NewsController extends Controller
     {
         // 写入要更新的数据
 		$News->title = Request::instance()->post('title');
-        $News->content = Request::instance()->post('content');
+        $News->content1 = Request::instance()->post('content1');
+		$News->content2 = Request::instance()->post('content2');
+		$News->content3 = Request::instance()->post('content3');
+		$News->image1 = Request::instance()->post('image1');
+		$News->image2 = Request::instance()->post('image2');
 		$News->create_time = Request::instance()->post('create_time');
+		$News->writer = Request::instance()->post('writer');
 
         // 更新或保存
         return $News->validate()->save();
@@ -144,5 +154,50 @@ class NewsController extends Controller
 
 		//渲染首页模板
         return $this->fetch();
+	}
+
+	public function upload(){
+		// 获取表单上传文件 例如：1.png
+		$file = request()->file('image');
+
+		// 移动到框架应用根目录/public/image/ 目录下
+		if($file){
+			$info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'image','');
+			
+			if($info){
+				// 成功上传后 获取上传信息
+				// a902d02fae5cdd89f86aacc71730ac15.png
+				$filename = $info->getFilename(); 
+
+				// 实例化请求信息
+				$Request = Request::instance();
+				$id = Request::instance()->param('id/d');
+
+				if (0 !== $id) {
+					$News = News::get($id);
+				} else {
+					$News = new News; 
+
+					$News->id = 0;
+					$News->title = '';
+					$News->content1 = '';
+					$News->content2 = '';
+					$News->content3 = '';
+				}
+
+				$News->route = '/thinkphp5/public/image/' . "$filename";
+					
+				// 添加数据
+				if (!$News->validate(true)->save()) {
+					return $this->error('数据添加错误：' . $News->getError());
+				}
+		
+				$this->assign('News', $News);
+				return $this->fetch('edit');
+			}else{
+				// 上传失败获取错误信息
+				echo $file->getError();
+			}
+		}
 	}
 }

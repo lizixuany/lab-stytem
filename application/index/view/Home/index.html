@@ -1,11 +1,228 @@
-{extend name="index"/}
+{extend name="index"} 
 {block name="title"}
 首页
 {/block}
 {block name="content"}
-<div style="margin: 80px 50px 50px 540px;">
-    <h1>欢迎使用</h1>
+<div class="row">
+    <div class="col-md-8">
+        <div style=" display:flex; justify-content : space-between;">
+            <b style="font-size:20px;">新闻快讯</b>&nbsp;
+            <i style="text-align:right;"><a href="{:url('news/index2')}">>>MORE</a></i>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-6">
+                <div id="demo" class="carousel slide">
+                    <!-- 轮播（Carousel）指标 -->
+                    <ol class="carousel-indicators">
+                        <?php foreach($imageShows as $key => $imageShow): ?>
+                            <li data-target="#demo" data-slide-to="<?php echo $key; ?>" <?php echo $key == 0 ? 'class="active"' : ''; ?>></li>
+                        <?php endforeach; ?>
+                    </ol>   
+                    <!-- 轮播（Carousel）项目 -->
+                    <div class="carousel-inner">
+                        <?php foreach($imageShows as $key => $imageShow): ?>
+                            <div class="item <?php echo $key == 0 ? 'active' : ''; ?>">
+                                <a href="<?php echo url('index/imagesDetail',['id'=>$imageShow['id']]);?>">
+                                    <img src="<?php echo $imageShow['route']; ?>" alt="Slide <?php echo $key + 1; ?>" 
+                                    style="width:100%;height:250px;object-fit:cover;">
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                    <!-- 轮播（Carousel）导航 -->
+                    <a class="left carousel-control" href="#demo " role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a >
+                    <a class="right carousel-control" href="#demo" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a >
+                </div>
+                <!-- 自定义JavaScript -->
+                <script>
+                    // 手动启动轮播
+                    $('#demo').carousel();
+                </script>
+                <a href="{:url('Images/index')}">修改图片</a>
+            </div>
+            <div class="col-md-6">
+                <div id="mylist">
+                    <ul>
+                        <?php
+                            $topNews = array(); // 存储状态为1的数据
+                            $normalNews = array(); // 存储状态不为1的数据
+            
+                            // 将状态为1的数据置顶
+                            foreach($newsList as $news) {
+                                if($news['state'] == 1) {
+                                    $topNews[] = $news;
+                                } else {
+                                    $normalNews[] = $news;
+                                }
+                            }
+            
+                            // 先显示状态为1的数据
+                            foreach($topNews as $news):
+                        ?>
+                        <p class="top-news"><span><?php echo $news['create_time']; ?></span>
+                            <a href="<?php echo url('index/newsDetail',['id'=>$news['id']]);?>">
+                                <?php 
+                                    $title = $news['title'];
+                                    echo mb_substr($title, 0, 16, 'utf-8');
+                                    if(mb_strlen($title, 'utf-8') > 16) echo '...'; 
+                                ?>
+                            </a>
+                        </p >
+                        <?php
+                            endforeach;
+                            
+                            //添加分割线
+                            if(!empty($topNews) && !empty($normalNews)) {
+                                echo '<hr>';
+                            }
+            
+                            // 再显示剩余的正常数据
+                            foreach($normalNews as $news):
+                        ?>
+                        <p><span><?php echo $news['create_time']; ?></span>
+                            <a href="<?php echo url('index/newsDetail',['id'=>$news['id']]);?>">
+                                <?php 
+                                    $title = $news['title'];
+                                    echo mb_substr($title, 0, 16, 'utf-8');
+                                    if(mb_strlen($title, 'utf-8') > 16) echo '...'; 
+                                ?>
+                            </a >
+                        </p >
+                        <?php
+                            endforeach;
+                        ?>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div style=" display:flex; justify-content : space-between;">
+            <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公告通知</b>&nbsp;
+            <i style="text-align:right;"><a href="{:url('notice/index2')}">>>MORE</a></i>
+        </div>
+        <hr>
+        <div id="mylist">
+            <ul>
+                <?php
+                    $count = 0;
+                    foreach($noticeList as $notice):
+                    if($count >= 6) break;
+                ?>
+                <p><span><?php echo $notice['create_time']; ?></span>
+                <a href="<?php echo url('index/noticeDetail',['id'=>$notice['id']]);?>">
+                    <?php 
+                        $title = $notice['title'];
+                        echo mb_substr($title, 0, 16, 'utf-8');
+                        if(mb_strlen($title, 'utf-8') > 16) echo '...'; 
+                    ?>
+                </a >
+                </p >
+                <?php
+                    $count++;
+                    endforeach;
+                ?>
+            </ul>
+        </div>
+    </div>
 </div>
-{/block}
-{block name="page"}
+<br><br>
+<div class="row">
+    <div class="col-md-4">
+        <div style=" display:flex; justify-content : space-between;">
+            <b style="font-size:20px;">资料下载</b>&nbsp;
+            <i style="text-align:right;"><a href="{:url('download/index2')}">>>MORE</a></i>
+        </div>
+        <hr>
+        <div id="mylist">
+            <ul>
+                <?php
+                    $count = 0;
+                    foreach($downloadList as $download):
+                        if($count >= 6) break;
+                ?>
+                <p><span><?php echo $download['create_time']; ?></span>
+                <a href="<?php echo url('index/downloadDetail',['id'=>$download['id']]);?>">
+                    <?php 
+                        $content = $download['content'];
+                        echo mb_substr($content, 0, 16, 'utf-8');
+                        if(mb_strlen($content, 'utf-8') > 16) echo '...'; 
+                    ?>
+                </a>
+                </p>
+                <?php
+                    $count++;
+                    endforeach;
+                ?>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div style=" display:flex; justify-content : space-between;">
+            <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;失物招领</b>&nbsp;
+            <i style="text-align:right;"><a href="{:url('lost/index2')}">>>MORE</a></i>
+        </div>
+        <hr>
+        <div id="mylist">
+            <ul>
+                <?php
+                    $count = 0;
+                    foreach($lostList as $lost):
+                        if($count >= 6) break;
+                ?>
+                <p>
+                    <span><?php echo $lost['create_time']; ?></span>
+                    <a href="<?php echo url('index/lostDetail',['id'=>$lost['id']]);?>">
+                        <?php 
+                            // 截取name字段的前10个字符
+                            $shortenedText = mb_substr($lost['name'], 0, 10, 'utf-8');
+                            // 如果原始字符串长度超过10个字符，则添加省略号
+                            if(mb_strlen($lost['name'], 'utf-8') > 10) {
+                                $shortenedText .= '...';
+                            }
+                            echo $shortenedText;
+                        ?> 在<?php echo $lost['place']; ?>被捡拾
+                    </a >
+                </p >
+                <?php
+                    $count++;
+                    endforeach;
+                ?>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div style=" display:flex; justify-content : space-between;">
+            <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实验场所</b>&nbsp;
+            <i style="text-align:right;"><a href="{:url('lab/index2')}">>>MORE</a></i>
+        </div>
+        <hr>
+        <ul>
+            <?php
+                $count = 0;
+                foreach($labList as $lab):
+                    if($count >= 6) break;
+            ?>
+            <p><a href="<?php echo url('index/labDetail',['id'=>$lab['id']]);?>">
+                <?php 
+                        $name = $lab['name'];
+                        echo mb_substr($name, 0, 16, 'utf-8');
+                        if(mb_strlen($name, 'utf-8') > 16) echo '...'; 
+                ?>
+            </a>
+            </p>
+            <?php
+                $count++;
+                endforeach;
+            ?>
+        </ul>
+    </div>
+</div>
 {/block}
