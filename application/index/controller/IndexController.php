@@ -288,4 +288,12 @@ class IndexController extends Controller
             'nextTitle' => $nextTitle,
             ]);
     }
+
+    public function imagesDetail($id){
+        //根据中心师资ID从数据库获取新闻数据详情
+        $imagesDetail = Images::get($id);
+
+        //渲染新闻详情页面
+        return $this->fetch('images_detail',['imagesDetail' => $imagesDetail]);
+    }
 }

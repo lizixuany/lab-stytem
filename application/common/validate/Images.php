@@ -2,7 +2,7 @@
 namespace app\common\validate;
 use think\Validate;
 
-class Image extends Validate
+class Images extends Validate
 {
     protected $rule = [
         'title'  => 'require',

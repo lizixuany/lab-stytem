@@ -41,19 +41,6 @@ class VideoController extends Controller
 		return $this->fetch('edit');
 	}
 
-	public function save() 
-	{
-		// 实例化请求信息
-       $Video = new Video;
-       
-        // 新增数据
-        if (!$this->saveVideo($Video)) {
-            return $this->error('操作失败' . $Video->getError());
-        }
-
-        return $this->success('操作成功', url('index'));
-	}
-
 	public function edit()
 	{
 		$id = Request::instance()->param('id/d');
@@ -73,14 +60,13 @@ class VideoController extends Controller
 
         // 获取传入的班级信息
         $Video = Video::get($id);
+
         if (is_null($Video)) {
-            return $this->error('系统未找到ID为' . $id . '的记录');
+            return $this->error('数据location不可为空');
         }
 
         // 新增数据
-        if ($this->saveVideo($Video)) {
-           
-        }
+        $this->saveVideo($Video);
 
         return $this->success('操作成功', url('index'));
 	}
@@ -120,12 +106,18 @@ class VideoController extends Controller
     private function saveVideo(Video &$Video) 
     {
         // 写入要更新的数据
+		$Video->id = Request::instance()->post('id');
         $Video->content = Request::instance()->post('content');
 		$Video->create_time = Request::instance()->post('create_time');
-		$Video->location = $Video->location;
 
+		if($Video->content === '') {
+			return $this->error('数据content不可为空' . $Video->getError());
+		}
+		if($Video->create_time === '') {
+			return $this->error('数据create_time不可为空' . $Video->getError());
+		}
         // 更新或保存
-        return $Video->validate(true)->save();
+        return $Video->Validate(true)->save();
     }
 
 	public function upload(){
@@ -158,9 +150,7 @@ class VideoController extends Controller
 				$Video->location = '/thinkphp5/public/Video/' . "$filename";
 					
 				// 添加数据
-				if (!$Video->validate(true)->save()) {
-					return $this->error('数据添加错误：' . $Video->getError());
-				}
+				$Video->save();
 		
 				$this->assign('Video', $Video);
 				return $this->fetch('edit');

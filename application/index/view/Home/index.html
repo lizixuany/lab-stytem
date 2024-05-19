@@ -7,7 +7,6 @@
     <div class="col-md-8">
         <div style=" display:flex; justify-content : space-between;">
             <b style="font-size:20px;">新闻快讯</b>&nbsp;
-            <i style="text-align:right;"><a href="{:url('news/index2')}">>>MORE</a></i>
         </div>
         <hr>
         <div class="row">
@@ -45,7 +44,7 @@
                     // 手动启动轮播
                     $('#demo').carousel();
                 </script>
-                <a href="{:url('Images/index')}">修改图片</a>
+                <a href="{:url('Images/index')}" class="btn btn-primary" style="margin: 5px 0px 0px 278px;">修改图片</a>
             </div>
             <div class="col-md-6">
                 <div id="mylist">
@@ -101,12 +100,14 @@
                     </ul>
                 </div>
             </div>
+            <a class="btn btn-sm btn-primary" href="{:url('news/index')}" style="margin: 20px 0px 0px 315px;">
+                <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
+            </a>
         </div>
     </div>
     <div class="col-md-4">
         <div style=" display:flex; justify-content : space-between;">
-            <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公告通知</b>&nbsp;
-            <i style="text-align:right;"><a href="{:url('notice/index2')}">>>MORE</a></i>
+            <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公告通知</b>
         </div>
         <hr>
         <div id="mylist">
@@ -117,7 +118,7 @@
                     if($count >= 6) break;
                 ?>
                 <p><span><?php echo $notice['create_time']; ?></span>
-                <a href="<?php echo url('index/noticeDetail',['id'=>$notice['id']]);?>">
+                <a href="<?php echo url('home/noticeDetail',['id'=>$notice['id']]);?>">
                     <?php 
                         $title = $notice['title'];
                         echo mb_substr($title, 0, 16, 'utf-8');
@@ -132,6 +133,9 @@
             </ul>
         </div>
     </div>
+    <a class="btn btn-sm btn-primary" href="{:url('notice/index')}" style="margin: 20px 0px 0px 315px;">
+        <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
+    </a>
 </div>
 <br><br>
 <div class="row">
@@ -149,7 +153,7 @@
                         if($count >= 6) break;
                 ?>
                 <p><span><?php echo $download['create_time']; ?></span>
-                <a href="<?php echo url('index/downloadDetail',['id'=>$download['id']]);?>">
+                <a href="<?php echo url('home/downloadDetail',['id'=>$download['id']]);?>">
                     <?php 
                         $content = $download['content'];
                         echo mb_substr($content, 0, 16, 'utf-8');
@@ -163,11 +167,13 @@
                 ?>
             </ul>
         </div>
+        <a class="btn btn-sm btn-primary" href="{:url('download/index')}" style="margin: 15px 0px 0px 300px;">
+            <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
+        </a>
     </div>
     <div class="col-md-4">
         <div style=" display:flex; justify-content : space-between;">
             <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;失物招领</b>&nbsp;
-            <i style="text-align:right;"><a href="{:url('lost/index2')}">>>MORE</a></i>
         </div>
         <hr>
         <div id="mylist">
@@ -179,7 +185,7 @@
                 ?>
                 <p>
                     <span><?php echo $lost['create_time']; ?></span>
-                    <a href="<?php echo url('index/lostDetail',['id'=>$lost['id']]);?>">
+                    <a href="<?php echo url('home/lostDetail',['id'=>$lost['id']]);?>">
                         <?php 
                             // 截取name字段的前10个字符
                             $shortenedText = mb_substr($lost['name'], 0, 10, 'utf-8');
@@ -197,11 +203,13 @@
                 ?>
             </ul>
         </div>
+        <a class="btn btn-sm btn-primary" href="{:url('lost/index')}" style="margin: 15px 0px 0px 300px;">
+            <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
+        </a>
     </div>
     <div class="col-md-4">
         <div style=" display:flex; justify-content : space-between;">
             <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实验场所</b>&nbsp;
-            <i style="text-align:right;"><a href="{:url('lab/index2')}">>>MORE</a></i>
         </div>
         <hr>
         <ul>
@@ -210,7 +218,7 @@
                 foreach($labList as $lab):
                     if($count >= 6) break;
             ?>
-            <p><a href="<?php echo url('index/labDetail',['id'=>$lab['id']]);?>">
+            <p><a href="<?php echo url('home/labDetail',['id'=>$lab['id']]);?>">
                 <?php 
                         $name = $lab['name'];
                         echo mb_substr($name, 0, 16, 'utf-8');
@@ -224,5 +232,8 @@
             ?>
         </ul>
     </div>
+    <a class="btn btn-sm btn-primary" href="{:url('lab/index')}" style="margin: 20px 0px 0px 315px;">
+        <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
+    </a>
 </div>
 {/block}

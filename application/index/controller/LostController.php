@@ -127,7 +127,7 @@ class LostController extends Controller
 		$Lost->state = Request::instance()->post('state');
 
         // 更新或保存
-        return $Lost->validate()->save();
+        return $Lost->validate(true)->save();
     }
 
 	public function index2(){

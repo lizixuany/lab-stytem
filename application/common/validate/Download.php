@@ -5,8 +5,8 @@ use think\Validate;
 class Download extends Validate
 {
     protected $rule = [
-        'content'  => 'require',
         'location' => 'requite',
-        'creat_time'  => 'require'     
+        'content'  => 'require',
+        'create_time'  => 'require'     
     ];
 }

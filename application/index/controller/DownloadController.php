@@ -41,19 +41,6 @@ class DownloadController extends Controller
 		return $this->fetch('edit');
 	}
 
-	public function save() 
-	{
-		// 实例化请求信息
-       $Download = new Download;
-       
-        // 新增数据
-        if (!$this->saveDownload($Download)) {
-            return $this->error('操作失败' . $Download->getError());
-        }
-
-        return $this->success('操作成功', url('index'));
-	}
-
 	public function edit()
 	{
 		$id = Request::instance()->param('id/d');
@@ -73,12 +60,13 @@ class DownloadController extends Controller
 
         // 获取传入的班级信息
         $Download = Download::get($id);
-        if (is_null($Download)) {
-            return $this->error('系统未找到ID为' . $id . '的记录');
-        }
 
+        if(is_null($Download)) {
+            return $this->error('数据location不可为空');
+        }
+		
         // 新增数据
-        if ($this->saveDownload($Download)) {}
+        $this->saveDownload($Download);
 
         return $this->success('操作成功', url('index'));
 	}
@@ -118,12 +106,19 @@ class DownloadController extends Controller
     private function saveDownload(Download &$Download) 
     {
         // 写入要更新的数据
+		$Download->id = Request::instance()->post('id');
         $Download->content = Request::instance()->post('content');
 		$Download->create_time = Request::instance()->post('create_time');
-		$Download->location = $Download->location;
+
+		if($Download->content === '') {
+			return $this->error('数据content不可为空' . $Download->getError());
+		}
+		if($Download->create_time === '') {
+			return $this->error('数据create_time不可为空' . $Download->getError());
+		}
 
         // 更新或保存
-        return $Download->validate()->save();
+        return $Download->Validate(true)->save();
     }
 
 	public function upload(){
@@ -154,11 +149,9 @@ class DownloadController extends Controller
 				}
 
 				$Download->location = '/thinkphp5/public/Download/' . "$filename";
-					
+
 				// 添加数据
-				if (!$Download->validate(true)->save()) {
-					return $this->error('数据添加错误：' . $Download->getError());
-				}
+				$Download->save();
 		
 				$this->assign('Download', $Download);
 				return $this->fetch('edit');
