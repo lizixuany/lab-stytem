@@ -80,11 +80,11 @@ class ImagesController extends Controller
 
         // 新增数据
         if (!$this->saveImages($Images)) {
-            return $this->error('操作失败' . $Images->getError());
+			return $this->success('操作成功', url('index'));
         }
 
-        return $this->success('操作成功', url('index'));
-	}
+		return $this->error('操作失败' . $Images->getError());
+		}
 
 	public function delete() {
 		// 获取pathinfo传入的ID值.
