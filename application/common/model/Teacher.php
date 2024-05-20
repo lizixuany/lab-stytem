@@ -9,6 +9,6 @@ class Teacher extends Model
 
     //获取新闻列表
     public function getList(){
-        return $this->field('id,name,content,study,success')->order('id','desc')->select();
+        return $this->field('id,name,role,content,study,success')->order('id','desc')->select();
     }
 }

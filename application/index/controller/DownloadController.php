@@ -148,7 +148,7 @@ class DownloadController extends Controller
 					$Download->create_time = '0';
 				}
 
-				$Download->location = '/thinkphp5/public/Download/' . "$filename";
+				$Download->location = '/Download/' . "$filename";
 
 				// 添加数据
 				$Download->save();

@@ -16,10 +16,75 @@
             <h2><a>中心师资</a></h2>
             <hr>
             <div style="width: 975px; height: 350px; padding: 15px;">
-                <?php foreach($teacherList as $teacher): ?>
-                    <p class="border-style"><a href="<?php echo url('index/teacherDetail',['id'=>$teacher['id']]);?>">><?php echo $teacher['name']; ?></a>&nbsp;&nbsp;
-                    <span>研究方向：<?php echo $teacher['study']; ?></span></p>
-                <?php endforeach; ?>
+                <?php
+                    foreach($topTeachers as $teacher): ;
+                ?>
+                    <p class="border-style">
+                        <a href="<?php echo url('index/teacherDetail',['id'=>$teacher['id']]);?>">><?php echo $teacher['name']; ?></a>
+                        &nbsp;&nbsp;
+                        <span>
+                            <?php 
+                                if ($teacher['role'] == 0) {
+                                    echo '讲师';
+                                } elseif ($teacher['role'] == 1) {
+                                    echo '副主任';
+                                } else {
+                                    echo '主任';
+                                }
+                            ?>
+                        </span>
+                        &nbsp;&nbsp;
+                        <span>研究方向：<?php echo $teacher['study']; ?></span>
+                    </p>
+                <?php
+                    endforeach;
+                ?>
+                <?php
+                    foreach($normalTeachers as $teacher): ;
+                ?>
+                    <p class="border-style">
+                        <a href="<?php echo url('index/teacherDetail',['id'=>$teacher['id']]);?>">><?php echo $teacher['name']; ?></a>
+                        &nbsp;&nbsp;
+                        <span>
+                            <?php 
+                                if ($teacher['role'] == 0) {
+                                    echo '讲师';
+                                } elseif ($teacher['role'] == 1) {
+                                    echo '副主任';
+                                } else {
+                                    echo '主任';
+                                }
+                            ?>
+                        </span>
+                        &nbsp;&nbsp;
+                        <span>研究方向：<?php echo $teacher['study']; ?></span>
+                    </p>
+                <?php
+                    endforeach;
+                ?>
+                <?php
+                    foreach($bottomTeachers as $teacher): ;
+                ?>
+                    <p class="border-style">
+                        <a href="<?php echo url('index/teacherDetail',['id'=>$teacher['id']]);?>">><?php echo $teacher['name']; ?></a>
+                        &nbsp;&nbsp;
+                        <span>
+                            <?php 
+                                if ($teacher['role'] == 0) {
+                                    echo '讲师';
+                                } elseif ($teacher['role'] == 1) {
+                                    echo '副主任';
+                                } else {
+                                    echo '主任';
+                                }
+                            ?>
+                        </span>
+                        &nbsp;&nbsp;
+                        <span>研究方向：<?php echo $teacher['study']; ?></span>
+                    </p>
+                <?php
+                    endforeach;
+                ?>        
             </div>
             {$teacherList->render()}
         </div>

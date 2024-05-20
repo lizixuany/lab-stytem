@@ -22,6 +22,23 @@ class HomeController extends Controller
         $news= new News();
         $newsList = $news->getList();
 
+        //主要新闻的置顶
+        $topNews = array(); // 存储状态为1的数据
+        $normalNews = array(); // 存储状态不为1的数据
+            
+        // 将状态为1的数据置顶
+        foreach($newsList as $news) {
+            if($news['state'] == 1) {
+                $topNews[] = $news;
+            } else {
+                $normalNews[] = $news;
+            }
+        }
+
+        //将数据传递给首页模板
+        $this->assign('topNews',$topNews);
+        $this->assign('normalNews',$normalNews);
+
         //传递给首页模板
         $this->assign('newsList',$newsList);
 

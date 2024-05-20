@@ -16,8 +16,12 @@
             <h2><a>规章制度</a></h2>
             <hr>
             {volist name="rules" id="_rule" key="key"}
-            <h3><a class="text-decoration" id="{$_rule->getData('id')}">{$_rule->getData('name')}</a></h2>
-            <textarea style="width: 975px; height: 600px; padding: 15px;">{$_rule->getData('content')}</textarea>
+            <h3>
+                <a class="text-decoration" id="{$_rule->getData('id')}">{$_rule->getData('name')}</a>
+            </h2>
+            <textarea style="width: 975px; height: 600px; padding: 15px;">
+                {$_rule->getData('content')}
+            </textarea>
             {/volist}
         </div>
     </div>

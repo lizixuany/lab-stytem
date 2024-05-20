@@ -251,6 +251,29 @@ class TeacherController extends Controller
         //调用分页
 		$teacherList = $teacher->paginate($pageSize);
 
+        // 存储状态为2的角色
+        $topTeachers = array();
+        // 存储状态为1的角色
+        $normalTeachers = array();
+        // 存储状态为0的角色
+        $bottomTeachers = array();
+            
+        // 将状态为1的数据置顶
+        foreach($teacherList as $teacher) {
+            if($teacher['role'] == 2) {
+                $topTeachers[] = $teacher;
+            } else if($teacher['role'] == 1){
+                $normalTeachers[] = $teacher;
+            } else {
+                $bottomTeachers[] = $teacher;
+            }
+        }
+        
+        //将数据传递给首页模板
+        $this->assign('topTeachers',$topTeachers);
+        $this->assign('normalTeachers',$normalTeachers);
+        $this->assign('bottomTeachers',$bottomTeachers);
+
         //传递给首页模板
         $this->assign('teacherList',$teacherList);
 

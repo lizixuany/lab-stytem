@@ -160,7 +160,7 @@ class NewsController extends Controller
 		// 获取表单上传文件 例如：1.png
 		$file = request()->file('image');
 
-		// 移动到框架应用根目录/public/image/ 目录下
+		// 移动到框架应用根目录/image/ 目录下
 		if($file){
 			$info = $file->rule('uniqid')->move(ROOT_PATH . 'public' . DS . 'image','');
 			
@@ -185,7 +185,7 @@ class NewsController extends Controller
 					$News->content3 = '';
 				}
 
-				$News->route = '/thinkphp5/public/image/' . "$filename";
+				$News->route = '/image/' . "$filename";
 					
 				// 添加数据
 				if (!$News->validate(true)->save()) {

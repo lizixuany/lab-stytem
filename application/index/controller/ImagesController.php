@@ -156,7 +156,7 @@ class ImagesController extends Controller
 
 				}
 
-				$Images->route = '/thinkphp5/public/image/' . "$filename";
+				$Images->route = '/image/' . "$filename";
 					
 				// 添加数据
 				if (!$Images->validate(true)->save()) {

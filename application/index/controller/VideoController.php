@@ -147,7 +147,7 @@ class VideoController extends Controller
 					$Video->create_time = '0';
 				}
 
-				$Video->location = '/thinkphp5/public/Video/' . "$filename";
+				$Video->location = '/Video/' . "$filename";
 					
 				// 添加数据
 				$Video->save();

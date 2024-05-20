@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>{block name="title"}标题{/block}</title>
     <link rel="stylesheet" href="http://cdn.staticfile.net/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-	<script src="/thinkphp5/public/static/js/jquery.slim.min.js"></script>
-    <script src="/thinkphp5/public/static/js/bootstrap.bundle.min.js"></script>
+	<script src="/static/js/jquery.slim.min.js"></script>
+    <script src="/static/js/bootstrap.bundle.min.js"></script>
     <script src="http://cdn.staticfile.net/jquery/2.1.1/jquery.min.js"></script>
 	<script src="http://cdn.staticfile.net/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <style>
@@ -142,12 +142,17 @@
         #mylist p span {
             float:right; 
         }
+        .box{
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
     </style>
 </head>
 
 <body class="container">
     <div>
-        <img src="/thinkphp5/public/image/biaoti.jpg" width="600px" height="120px">
+        <img src="/image/biaoti.jpg" width="600px" height="120px">
     </div>
     <hr>
     <div class="row head">
@@ -192,7 +197,7 @@
         </div>
     </div>
     <div style="margin: -15px 0px 30px 0px;">
-        <img src="/thinkphp5/public/image/biaotou.jpg" width="1155px" height="300px">
+        <img src="/image/biaotou.jpg" width="1155px" height="300px">
     </div>
 
     {block name="content"}

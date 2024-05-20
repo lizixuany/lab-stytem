@@ -50,51 +50,35 @@
                 <div id="mylist">
                     <ul>
                         <?php
-                            $topNews = array(); // 存储状态为1的数据
-                            $normalNews = array(); // 存储状态不为1的数据
-            
-                            // 将状态为1的数据置顶
-                            foreach($newsList as $news) {
-                                if($news['state'] == 1) {
-                                    $topNews[] = $news;
-                                } else {
-                                    $normalNews[] = $news;
-                                }
-                            }
-            
-                            // 先显示状态为1的数据
-                            foreach($topNews as $news):
+                            $count = 0;
+                            foreach($topNews as $news): 
+                                if($count < 5) {
                         ?>
-                        <p class="top-news"><span><?php echo $news['create_time']; ?></span>
-                            <a href="<?php echo url('index/newsDetail',['id'=>$news['id']]);?>">
-                                <?php 
-                                    $title = $news['title'];
-                                    echo mb_substr($title, 0, 16, 'utf-8');
-                                    if(mb_strlen($title, 'utf-8') > 16) echo '...'; 
-                                ?>
-                            </a>
-                        </p >
+                            <p class="top-news box"><span><?php echo $news['create_time']; ?></span>
+                                <a href="<?php echo url('home/newsDetail',['id'=>$news['id']]);?>">
+                                    <?php echo $news['title']; ?>
+                                </a>
+                            </p>
                         <?php
+                                $count++;
+                            }
                             endforeach;
-                            
-                            //添加分割线
-                            if(!empty($topNews) && !empty($normalNews)) {
-                                echo '<hr>';
-                            }
-            
-                            // 再显示剩余的正常数据
-                            foreach($normalNews as $news):
                         ?>
-                        <p><span><?php echo $news['create_time']; ?></span>
-                            <a href="<?php echo url('index/newsDetail',['id'=>$news['id']]);?>">
-                                <?php 
-                                    $title = $news['title'];
-                                    echo mb_substr($title, 0, 16, 'utf-8');
-                                    if(mb_strlen($title, 'utf-8') > 16) echo '...'; 
-                                ?>
+                        <hr>
+                        <?php foreach($normalNews as $news): 
+                            if($count < 5) {
+                        ?>
+                        <p class="box">
+                            <span>
+                                <?php echo $news['create_time']; ?>
+                            </span>
+                            <a href="<?php echo url('home/newsDetail',['id'=>$news['id']]);?>">
+                                <?php echo $news['title']; ?>
                             </a >
-                        </p >
+                        </p>
                         <?php
+                                $count++;
+                            }
                             endforeach;
                         ?>
                     </ul>
@@ -107,7 +91,10 @@
     </div>
     <div class="col-md-4">
         <div style=" display:flex; justify-content : space-between;">
-            <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公告通知</b>
+            <b style="font-size:20px;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公告通知
+            </b>
+            &nbsp;
         </div>
         <hr>
         <div id="mylist">
@@ -115,16 +102,15 @@
                 <?php
                     $count = 0;
                     foreach($noticeList as $notice):
-                    if($count >= 6) break;
+                        if($count >= 6) break;
                 ?>
-                <p><span><?php echo $notice['create_time']; ?></span>
-                <a href="<?php echo url('home/noticeDetail',['id'=>$notice['id']]);?>">
-                    <?php 
-                        $title = $notice['title'];
-                        echo mb_substr($title, 0, 16, 'utf-8');
-                        if(mb_strlen($title, 'utf-8') > 16) echo '...'; 
-                    ?>
-                </a >
+                <p class="box">
+                    <span>
+                        <?php echo $notice['create_time']; ?>
+                    </span>
+                    <a href="<?php echo url('home/noticeDetail',['id'=>$notice['id']]);?>">
+                        <?php echo $notice['title']; ?>
+                    </a>
                 </p >
                 <?php
                     $count++;
@@ -132,17 +118,19 @@
                 ?>
             </ul>
         </div>
+        <a class="btn btn-sm btn-primary" href="{:url('notice/index')}" style="margin: 20px 0px 0px 315px;">
+            <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
+        </a>
     </div>
-    <a class="btn btn-sm btn-primary" href="{:url('notice/index')}" style="margin: 20px 0px 0px 315px;">
-        <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
-    </a>
 </div>
 <br><br>
 <div class="row">
     <div class="col-md-4">
         <div style=" display:flex; justify-content : space-between;">
-            <b style="font-size:20px;">资料下载</b>&nbsp;
-            <i style="text-align:right;"><a href="{:url('download/index2')}">>>MORE</a></i>
+            <b style="font-size:20px;">
+                资料下载
+            </b>
+            &nbsp;
         </div>
         <hr>
         <div id="mylist">
@@ -152,14 +140,13 @@
                     foreach($downloadList as $download):
                         if($count >= 6) break;
                 ?>
-                <p><span><?php echo $download['create_time']; ?></span>
-                <a href="<?php echo url('home/downloadDetail',['id'=>$download['id']]);?>">
-                    <?php 
-                        $content = $download['content'];
-                        echo mb_substr($content, 0, 16, 'utf-8');
-                        if(mb_strlen($content, 'utf-8') > 16) echo '...'; 
-                    ?>
-                </a>
+                <p class="box">
+                    <span>
+                        <?php echo $download['create_time']; ?>
+                    </span>
+                    <a href="<?php echo url('home/downloadDetail',['id'=>$download['id']]);?>">
+                        <?php echo $content = $download['content'];?>
+                    </a>
                 </p>
                 <?php
                     $count++;
@@ -167,13 +154,16 @@
                 ?>
             </ul>
         </div>
-        <a class="btn btn-sm btn-primary" href="{:url('download/index')}" style="margin: 15px 0px 0px 300px;">
+        <a class="btn btn-sm btn-primary" href="{:url('download/index')}" style="margin: 20px 0px 0px 315px;">
             <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
         </a>
     </div>
     <div class="col-md-4">
         <div style=" display:flex; justify-content : space-between;">
-            <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;失物招领</b>&nbsp;
+            <b style="font-size:20px;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;失物招领
+            </b>
+            &nbsp;
         </div>
         <hr>
         <div id="mylist">
@@ -183,18 +173,15 @@
                     foreach($lostList as $lost):
                         if($count >= 6) break;
                 ?>
-                <p>
-                    <span><?php echo $lost['create_time']; ?></span>
+                <p class="box">
+                    <span>
+                        <?php echo $lost['create_time']; ?>
+                    </span>
                     <a href="<?php echo url('home/lostDetail',['id'=>$lost['id']]);?>">
-                        <?php 
-                            // 截取name字段的前10个字符
-                            $shortenedText = mb_substr($lost['name'], 0, 10, 'utf-8');
-                            // 如果原始字符串长度超过10个字符，则添加省略号
-                            if(mb_strlen($lost['name'], 'utf-8') > 10) {
-                                $shortenedText .= '...';
-                            }
-                            echo $shortenedText;
-                        ?> 在<?php echo $lost['place']; ?>被捡拾
+                        <?php echo $lost['name']; ?>在<?php echo $lost['place']; ?>
+                        于<?php echo $lost['create_time']; ?>被捡到，
+                        现放在<?php echo $lost['location']; ?>,请丢失同学看到后快来认领。
+                        联系电话：15233839679。
                     </a >
                 </p >
                 <?php
@@ -203,13 +190,16 @@
                 ?>
             </ul>
         </div>
-        <a class="btn btn-sm btn-primary" href="{:url('lost/index')}" style="margin: 15px 0px 0px 300px;">
+        <a class="btn btn-sm btn-primary" href="{:url('lost/index')}" style="margin: 20px 0px 0px 315px;">
             <i class="glyphicon glyphicon-pencil"></i>&nbsp;编辑
         </a>
     </div>
     <div class="col-md-4">
         <div style=" display:flex; justify-content : space-between;">
-            <b style="font-size:20px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实验场所</b>&nbsp;
+            <b style="font-size:20px;">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实验场所
+            </b>
+            &nbsp;
         </div>
         <hr>
         <ul>
@@ -218,13 +208,10 @@
                 foreach($labList as $lab):
                     if($count >= 6) break;
             ?>
-            <p><a href="<?php echo url('home/labDetail',['id'=>$lab['id']]);?>">
-                <?php 
-                        $name = $lab['name'];
-                        echo mb_substr($name, 0, 16, 'utf-8');
-                        if(mb_strlen($name, 'utf-8') > 16) echo '...'; 
-                ?>
-            </a>
+            <p class="box">
+                <a href="<?php echo url('home/labDetail',['id'=>$lab['id']]);?>">
+                    <?php echo $name = $lab['name'];?>
+                </a>
             </p>
             <?php
                 $count++;

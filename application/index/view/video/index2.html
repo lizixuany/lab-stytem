@@ -18,7 +18,9 @@
             <div style="width: 975px; height: 350px; padding: 15px;">
                 <div id="mylist" style="width: 975px; height: 350px; padding: 15px;">
                     <?php foreach($videoList as $video): ?>
-                        <p class="border-style"><span><?php echo $video['create_time']; ?></span><a href="<?php echo url('index/videoDetail',['id'=>$video['id']]);?>">><?php echo $video['content']; ?></a></p>
+                        <p class="border-style"><span><?php echo $video['create_time']; ?></span>
+                            <a href="<?php echo url('index/videoDetail',['id'=>$video['id']]);?>">><?php echo $video['content']; ?></a>
+                        </p>
                     <?php endforeach; ?>
                 </div>
                 {$videoList->render()}

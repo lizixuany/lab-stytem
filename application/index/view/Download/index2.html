@@ -10,7 +10,9 @@
         <hr>
         <div id="mylist" style="width: 975px; height: 350px; padding: 15px;">
             <?php foreach($downloadList as $download): ?>
-                <p class="border-style"><span><?php echo $download['create_time']; ?></span><a href="<?php echo url('index/downloadDetail',['id'=>$download['id']]);?>">><?php echo $download['content']; ?></a></p>
+                <p class="border-style">
+                    <span><?php echo $download['create_time']; ?></span>
+                    <a href="<?php echo url('index/downloadDetail',['id'=>$download['id']]);?>">><?php echo $download['content']; ?></a></p>
             <?php endforeach; ?>
         </div>
         {$downloadList->render()}
